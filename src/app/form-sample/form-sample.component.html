@@ -1,0 +1,33 @@
+<form [formGroup]="formGroup" novalidate (ngSubmit)="onSubmit()">
+
+  <mat-card class="main-card">
+    <mat-card-content>
+      <mat-card-header>
+        <mat-card-title>Shipping Information</mat-card-title>
+      </mat-card-header>
+
+      <app-form-flow-content [formGroup]="formGroup" [controls]="controls1" />
+
+    </mat-card-content>
+  </mat-card>
+
+
+  <mat-card class="main-card">
+    <mat-card-content>
+      <mat-card-header>
+        <mat-card-title>Car info</mat-card-title>
+      </mat-card-header>
+
+      <app-form-flow-content [formGroup]="formGroup" [controls]="controls2" />
+
+    </mat-card-content>
+  </mat-card>
+
+
+</form>
+
+
+<pre>
+  {{formGroup.value | json}}
+</pre>
+

@@ -1,0 +1,86 @@
+<div class="ff-container" [formGroup]="formGroup">
+  @for (ctl of controls; track $index) {
+
+  @if(!ctl.isNonMatFormField){
+
+  <mat-form-field [ngClass]="ctl.flex" floatLabel="always" appearance="outline" subscriptSizing="fixed">
+    @if(ctl.label){
+    <mat-label>{{ctl.label}}</mat-label>
+    }
+
+    @switch(ctl.type){
+    @case('textarea') {<textarea matInput [formControlName]="ctl.name"></textarea>}
+    @case('select') {
+    <mat-select [formControlName]="ctl.name">
+      @for (item of ctl.values; track item) {
+      <mat-option [value]="item.key">{{ item.label }}</mat-option>
+      }
+    </mat-select>
+    }
+    @case('number') {
+    <input matInput [formControlName]="ctl.name" type="number" class="ff-number">
+    }
+    @case('space') {
+    <input matInput style="display: none;" readonly="true">
+    }
+
+    @case('checkbox') {
+    <div class="ff-row">
+      <mat-slide-toggle hideIcon="false" [formControlName]="ctl.name" [required]="ctl.isRequired"></mat-slide-toggle>
+      <input matInput readonly="true">
+      <!-- <mat-icon style="color: #707070;">check_box_outline_blank</mat-icon> -->
+      <!-- <mat-checkbox [formControlName]="ctl.name"></mat-checkbox> -->
+    </div>
+    }
+
+
+    @default {
+    <input matInput [formControlName]="ctl.name">}
+    }
+
+    @if(ctl.hintStart){
+    <mat-hint>{{ctl.hintStart}}</mat-hint>
+    }
+    @if(ctl.hintEnd){
+    <mat-hint align="end">{{ctl.hintEnd}}</mat-hint>
+    }
+
+    @if (formGroup.controls[ctl.name].hasError('required')) {
+    <mat-error>{{ctl.label}} je <strong>povinný</strong></mat-error>
+    }
+
+    @if (formGroup.controls[ctl.name].hasError('min')) {
+    <mat-error>{{ctl.label}} musí byť najmenej {{ctl.min}}</mat-error>
+    }
+
+    @if (formGroup.controls[ctl.name].hasError('max')) {
+    <mat-error>{{ctl.label}} musí byť najviac {{ctl.max}}</mat-error>
+    }
+
+    @if (formGroup.controls[ctl.name].hasError('minlength')) {
+    <mat-error>{{ctl.label}} musí mať najmenej {{ctl.minLength}} znakov</mat-error>
+    }
+
+    @if (formGroup.controls[ctl.name].hasError('maxlength')) {
+    <mat-error>{{ctl.label}} musí mať najviac {{ctl.maxLength}} znakov</mat-error>
+    }
+
+
+
+  </mat-form-field>
+  }
+  @else(){
+
+  @switch(ctl.type){
+  @case('space') {
+  <div [ngClass]="ctl.flex"></div>
+  }
+  }
+
+
+  }
+  <!-- <pre>
+    {{formGroup.controls[ctl.name].errors | json}}
+  </pre> -->
+  }
+</div>
