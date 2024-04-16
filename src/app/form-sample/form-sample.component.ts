@@ -1,15 +1,9 @@
 import { Component, inject } from '@angular/core';
-
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { FormFlowService } from '../form-flow/form-flow.service';
-import { MatDividerModule } from '@angular/material/divider';
-import { NgClass, JsonPipe } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { FormFlowContentComponent } from '../form-flow/form-flow-content.component';
-
 
 @Component({
   selector: 'app-form-sample',
@@ -17,12 +11,7 @@ import { FormFlowContentComponent } from '../form-flow/form-flow-content.compone
   styleUrl: './form-sample.component.css',
   standalone: true,
   imports: [
-    NgClass,
-    MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
     MatCardModule,
-    MatDividerModule,
     ReactiveFormsModule,
     JsonPipe,
     FormFlowContentComponent
@@ -30,6 +19,12 @@ import { FormFlowContentComponent } from '../form-flow/form-flow-content.compone
 })
 export class FormSampleComponent {
   private fservice = inject(FormFlowService);
+  formGroup: FormGroup;
+
+  constructor() {
+    this.formGroup = this.fservice.createFormGroup(this.controls1);
+    this.fservice.appendToFormGroup(this.formGroup, this.controls2);
+  }
 
 
   controls1 = [
@@ -145,7 +140,7 @@ export class FormSampleComponent {
       "flex": 'quarter',
       isRequired: true,
       "value": null,
-    },    
+    },
 
     {
       "type": "text",
@@ -172,19 +167,12 @@ export class FormSampleComponent {
       "flex": 'quarter',
       isRequired: true,
       "value": null,
-    },    
+    },
 
 
   ]
 
-  formGroup: FormGroup;
 
-  constructor() {
-    this.formGroup = this.fservice.createFormGroup(this.controls1);
-    this.fservice.appendToFormGroup(this.formGroup, this.controls2);
-    //console.log(this.formDef.getFormStructure());
-
-  }
 
   onSubmit(): void {
     alert('Thanks!');
