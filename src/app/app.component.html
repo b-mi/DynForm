@@ -1,13 +1,22 @@
-<div [ngClass]="themeService.themeSignal()">
-    <app-theme-switch label="Téma">
+<div [ngClass]="themeService.themeSignal()" class="full-height">
+    <mat-tab-group>
+        <mat-tab label="Theme switch control">
+            <div class="tab-content">
+                <app-theme-switch label="Theme" />
+            </div>
+        </mat-tab>
+        <mat-tab label="Form sample based on json definition">
+            <div class="tab-content">
+                <app-form-sample></app-form-sample>
+            </div>
 
-    </app-theme-switch>
+        </mat-tab>
+        <mat-tab label="Typography">
+            <div class="tab-content">
+                <app-typography></app-typography>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
 
-
-    <app-form-sample></app-form-sample>
-    <hr>
-    <app-typography></app-typography>
-    <hr>
-    <app-flow-test></app-flow-test>
 
 </div>

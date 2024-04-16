@@ -42,8 +42,8 @@ export class FormSampleComponent {
       "isRequired": true,
       minLength: 10,
       maxLength: 20,
-      hintStart: 'Popis na ziaciatok',
-      hintEnd: 'Popis na koniec'
+      hintStart: 'Description at start',
+      hintEnd: 'Description at end'
 
     },
     {
@@ -53,7 +53,7 @@ export class FormSampleComponent {
       "flex": 'half',
       "value": "",
       "isRequired": true,
-      hintEnd: 'Popis na koniec'
+      hintEnd: 'Description at end'
     },
     {
       "type": "text",
@@ -119,29 +119,29 @@ export class FormSampleComponent {
 
     {
       "type": "text",
-      "label": "Auto",
+      "label": "Car",
       "name": "car_name",
       "flex": 'quarter',
       "value": "",
     },
     {
       "type": "number",
-      "label": "Cena",
+      "label": "Price",
       "name": "car_price",
       "flex": 'quarter',
       "value": 0,
     },
     {
       "type": "number",
-      "label": "Vek",
+      "label": "Age",
       "name": "car_age",
       "flex": 'quarter',
       "value": 0,
     },
     {
       "type": "checkbox",
-      "label": "Funguje",
-      "name": "funguje",
+      "label": "Check",
+      "name": "check1",
       "flex": 'quarter',
       isRequired: true,
       "value": null,
@@ -149,7 +149,7 @@ export class FormSampleComponent {
 
     {
       "type": "text",
-      "label": "Auto2",
+      "label": "Car 2",
       "name": "car_name2",
       "flex": 'quarter',
       "value": "",
@@ -160,15 +160,15 @@ export class FormSampleComponent {
     },
     {
       "type": "number",
-      "label": "Vek2",
+      "label": "Age 2",
       "name": "car_age2",
       "flex": 'quarter',
       "value": 0,
     },
     {
       "type": "checkbox",
-      "label": "Funguje2",
-      "name": "funguje2",
+      "label": "Check 2",
+      "name": "check2",
       "flex": 'quarter',
       isRequired: true,
       "value": null,
