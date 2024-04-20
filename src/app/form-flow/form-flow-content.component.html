@@ -3,7 +3,8 @@
 
   @if(!ctl.isNonMatFormField){
 
-  <mat-form-field [ngClass]="ctl.flex" floatLabel="always" appearance="outline" subscriptSizing="fixed">
+    <!-- appearance: 'fill' | 'outline' -->
+  <mat-form-field [ngClass]="ctl.flex" floatLabel="always" appearance="fill" subscriptSizing="fixed">
     @if(ctl.label){
     <mat-label>{{ctl.label}}</mat-label>
     }
