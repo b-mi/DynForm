@@ -13,3 +13,6 @@ Testing dynamic forms and angular material theme switcher, angular 17
 
 Theme switch
 based on https://github.com/monacodelisa/Angular-Theming-Signals
+
+## Material typography cheat list
+![alt text](images/typomat.png)
