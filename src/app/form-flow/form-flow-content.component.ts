@@ -9,13 +9,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-form-flow-content',
   standalone: true,
+  providers: [provideNativeDateAdapter()],
   imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule,
     MatCheckboxModule, NgClass, MatButtonModule, MatIconModule, MatSlideToggleModule,
-    MatCardModule],
+    MatCardModule, MatDatepickerModule],
   templateUrl: './form-flow-content.component.html',
   styleUrl: './form-flow-content.component.css'
 })

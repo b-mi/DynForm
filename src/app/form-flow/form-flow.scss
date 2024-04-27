@@ -23,6 +23,10 @@ $showColors: false;
     text-align: end;
 }
 
+.ff-date {
+    color: dimgray;
+}
+
 .quarter {
     grid-column: span 3;
     @if ($showColors) {

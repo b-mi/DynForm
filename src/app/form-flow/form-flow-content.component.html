@@ -3,7 +3,7 @@
 
   @if(!ctl.isNonMatFormField){
 
-    <!-- appearance: 'fill' | 'outline' -->
+  <!-- appearance: 'fill' | 'outline' -->
   <mat-form-field [ngClass]="ctl.flex" floatLabel="always" appearance="fill" subscriptSizing="fixed">
     @if(ctl.label){
     <mat-label>{{ctl.label}}</mat-label>
@@ -20,6 +20,14 @@
     }
     @case('number') {
     <input matInput [formControlName]="ctl.name" type="number" class="ff-number">
+    }
+    @case('date') {
+    <div class="ff-row ff-date">
+      <input matInput [formControlName]="ctl.name" [matDatepicker]="datePicker">
+      <mat-icon (click)="datePicker.open()">today</mat-icon>
+      <!-- <mat-datepicker-toggle matIconSuffix [for]="datePicker"></mat-datepicker-toggle> -->
+      <mat-datepicker #datePicker></mat-datepicker>
+    </div>
     }
     @case('space') {
     <input matInput style="display: none;" readonly="true">
@@ -65,8 +73,6 @@
     @if (formGroup.controls[ctl.name].hasError('maxlength')) {
     <mat-error>{{ctl.label}} musí mať najviac {{ctl.maxLength}} znakov</mat-error>
     }
-
-
 
   </mat-form-field>
   }
