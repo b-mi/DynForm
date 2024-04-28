@@ -5,6 +5,11 @@
     /* Povolí vertikálne skrolovanie */
 }
 
-.full-height {
+.main-container {
+    /* display: flex;
+    justify-content: center; */
     height: 100%;
+    max-width: 800px;
+    /* align-items: center;
+    min-height: 100vh; */
 }
