@@ -50,6 +50,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
               "src/app/theme/theme.scss",
               "src/app/form-flow/form-flow.scss"
@@ -111,6 +112,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
               "src/app/theme/theme.scss",
               "src/app/form-flow/form-flow.scss"
