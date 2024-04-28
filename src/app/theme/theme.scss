@@ -4,7 +4,7 @@
 $light-theme: matx.define-theme((
   color: (
     theme-type: light,
-    primary: matx.$m3-violet-palette,
+    primary: matx.$m3-green-palette,
     tertiary: matx.$m3-blue-palette,
   ),
   density: (
@@ -19,6 +19,9 @@ $light-theme: matx.define-theme((
   @include mat.all-component-themes($light-theme);
 }
 
+body {
+  max-width: 800px;
+}
 
 // $m3-red-palette
 // $m3-green-palette
