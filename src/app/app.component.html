@@ -1,4 +1,5 @@
-<div [ngClass]="themeService.themeSignal()" class="full-height">
+<!-- <div [ngClass]="themeService.themeSignal()" class="full-height"> -->
+    <div class="light" class="full-height">
     <mat-tab-group>
         <mat-tab label="Form sample based on json definition">
             <div class="tab-content">
@@ -14,6 +15,11 @@
         <mat-tab label="Typography cheatsheet">
             <div class="tab-content">
                 <app-typography></app-typography>
+            </div>
+        </mat-tab>
+        <mat-tab label="Buttons">
+            <div class="tab-content">
+                <app-buttons></app-buttons>
             </div>
         </mat-tab>
     </mat-tab-group>

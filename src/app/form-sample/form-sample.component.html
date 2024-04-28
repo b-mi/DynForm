@@ -1,9 +1,12 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <span>title</span>
+</mat-toolbar>
 <form [formGroup]="formGroup" novalidate (ngSubmit)="onSubmit()">
 
   <mat-card class="main-card">
     <mat-card-content>
       <mat-card-header>
-        <mat-card-title>Shipping Information</mat-card-title>
+        <mat-card-subtitle>Shipping Information</mat-card-subtitle>
       </mat-card-header>
 
       <app-form-flow-content [formGroup]="formGroup" [controls]="controls1" />
@@ -15,7 +18,7 @@
   <mat-card class="main-card">
     <mat-card-content>
       <mat-card-header>
-        <mat-card-title>Car info</mat-card-title>
+        <mat-card-subtitle>Car info</mat-card-subtitle>
       </mat-card-header>
 
       <app-form-flow-content [formGroup]="formGroup" [controls]="controls2" />
@@ -24,7 +27,7 @@
   </mat-card>
 
   <div class="ff-row ff-space-around">
-    <button mat-raised-button (click)="enable(true)">Enable</button>
+    <button mat-flat-button (click)="enable(true)">Enable</button>
     <button mat-raised-button (click)="enable(false)">Disable</button>
   </div>
 

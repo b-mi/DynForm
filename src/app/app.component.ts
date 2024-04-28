@@ -7,13 +7,14 @@ import { ThemeService } from './theme/theme.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NgClass } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
+import { ButtonsComponent } from './buttons/buttons.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, FormSampleComponent, TypographyComponent,
-    ThemeSwitchComponent, NgClass, MatTabsModule, MatCardModule],
+    ThemeSwitchComponent, NgClass, MatTabsModule, MatCardModule, ButtonsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

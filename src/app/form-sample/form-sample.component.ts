@@ -5,7 +5,9 @@ import { FormFlowService } from '../form-flow/form-flow.service';
 import { JsonPipe } from '@angular/common';
 import { FormFlowContentComponent } from '../form-flow/form-flow-content.component';
 import { MatButtonModule } from '@angular/material/button';
-import { concat } from 'rxjs';
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-form-sample',
@@ -17,7 +19,10 @@ import { concat } from 'rxjs';
     ReactiveFormsModule,
     JsonPipe,
     FormFlowContentComponent,
-    MatButtonModule
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatDividerModule
   ]
 })
 export class FormSampleComponent {
