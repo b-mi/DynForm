@@ -1,5 +1,24 @@
-@use "@angular/material" as mat;
-@use "@angular/material-experimental" as matx;
+@use '@angular/material' as mat;
+@use '@angular/material-experimental' as matx;
+
+$light-theme: matx.define-theme((
+  color: (
+    theme-type: light,
+    primary: matx.$m3-violet-palette,
+    tertiary: matx.$m3-blue-palette,
+  ),
+  density: (
+    scale: -1
+  )
+));
+
+@include mat.core();
+@include matx.color-variants-back-compat($light-theme);
+
+:root {
+  @include mat.all-component-themes($light-theme);
+}
+
 
 // $m3-red-palette
 // $m3-green-palette
@@ -12,59 +31,3 @@
 // $m3-azure-palette
 // $m3-violet-palette
 // $m3-rose-palette
-
-$my-typography: mat.define-typography-config();
-$light: matx.define-theme(
-  (
-    color: (
-      theme-type: light,
-      primary: matx.$m3-orange-palette,
-      tertiary: matx.$m3-blue-palette
-    ),
-    typography: (
-      brand-family: 'Comic Sans',
-      bold-weight: 900
-    ),
-    density: (
-      scale: -1
-    )
-    
-  )
-);
-
-
-$dark: matx.define-theme(
-  (
-    color: (
-      theme-type: dark,
-      primary: matx.$m3-orange-palette,
-      tertiary: matx.$m3-blue-palette
-    ),
-    typography: (
-      brand-family: 'Comic Sans',
-      bold-weight: 900
-    ),
-    density: (
-      scale: -1
-    )
-    
-  )
-);
-
-@include mat.core();
-@include matx.color-variants-back-compat($light);
-
-.dark {
-  @include mat.core();
-  @include matx.color-variants-back-compat($dark);
-  }
-
-
-
-html {
-  // Apply the base theme at the root, so it will be inherited by the whole app.
-  @include mat.all-component-themes($light);
-}
-// :root {
-//   @include mat.all-component-themes($theme);
-// }

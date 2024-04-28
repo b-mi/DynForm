@@ -35,10 +35,12 @@
 
     @case('checkbox') {
     <div class="ff-row">
-      <mat-slide-toggle hideIcon="false" [formControlName]="ctl.name" [required]="ctl.isRequired"></mat-slide-toggle>
-      <input matInput readonly="true">
-      <!-- <mat-icon style="color: #707070;">check_box_outline_blank</mat-icon> -->
+      <input matInput readonly="true" [disabled]="formGroup.get(ctl.name)?.disabled"> 
+      
       <!-- <mat-checkbox [formControlName]="ctl.name"></mat-checkbox> -->
+      <mat-slide-toggle hideIcon="false" [formControlName]="ctl.name" [required]="ctl.isRequired"></mat-slide-toggle>
+
+
     </div>
     }
 

@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatChipsModule } from '@angular/material/chips';
 import { provideNativeDateAdapter } from '@angular/material/core';
 
 @Component({
@@ -18,7 +19,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
   providers: [provideNativeDateAdapter()],
   imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule,
     MatCheckboxModule, NgClass, MatButtonModule, MatIconModule, MatSlideToggleModule,
-    MatCardModule, MatDatepickerModule],
+    MatCardModule, MatDatepickerModule, MatChipsModule],
   templateUrl: './form-flow-content.component.html',
   styleUrl: './form-flow-content.component.css'
 })
