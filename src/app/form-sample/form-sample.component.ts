@@ -4,6 +4,8 @@ import { MatCardModule } from '@angular/material/card';
 import { FormFlowService } from '../form-flow/form-flow.service';
 import { JsonPipe } from '@angular/common';
 import { FormFlowContentComponent } from '../form-flow/form-flow-content.component';
+import { MatButtonModule } from '@angular/material/button';
+import { concat } from 'rxjs';
 
 @Component({
   selector: 'app-form-sample',
@@ -14,7 +16,8 @@ import { FormFlowContentComponent } from '../form-flow/form-flow-content.compone
     MatCardModule,
     ReactiveFormsModule,
     JsonPipe,
-    FormFlowContentComponent
+    FormFlowContentComponent,
+    MatButtonModule
   ]
 })
 export class FormSampleComponent {
@@ -172,9 +175,21 @@ export class FormSampleComponent {
 
   ]
 
-
-
   onSubmit(): void {
-    alert('Thanks!');
+    //alert('Thanks!');
   }
+
+  enable(ena: boolean) {
+
+    const arr = [...this.controls1, ...this.controls2];
+
+    arr.forEach(fld => {
+      const ctl = this.formGroup.get(<string>fld.name);
+      if (ena)
+        ctl?.enable();
+      else
+        ctl?.disable();
+    });
+  }
+
 }
