@@ -16,7 +16,14 @@ $showColors: false;
 .ff-row {
     display: flex;
     flex-direction: row;
+}
+
+.ff-space-between {
     justify-content: space-between;
+}
+
+.ff-space-around {
+    justify-content: space-around;
 }
 
 .ff-number {
