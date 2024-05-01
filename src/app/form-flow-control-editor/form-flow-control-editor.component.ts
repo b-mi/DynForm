@@ -3,11 +3,12 @@ import { Component, Input, OnInit, forwardRef, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormFlowService } from '../form-flow/form-flow.service';
 import { FormFlowContentComponent } from '../form-flow/form-flow-content.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-form-flow-control-editor',
   standalone: true,
-  imports: [JsonPipe, forwardRef(() => FormFlowContentComponent)],
+  imports: [JsonPipe, MatButtonModule, forwardRef(() => FormFlowContentComponent)],
   templateUrl: './form-flow-control-editor.component.html',
   styleUrl: './form-flow-control-editor.component.css'
 })
@@ -143,5 +144,7 @@ export class FormFlowControlEditorComponent implements OnInit {
   ngOnInit() {
   }
 
+  save(doSave: boolean) {
+  }
 
 }

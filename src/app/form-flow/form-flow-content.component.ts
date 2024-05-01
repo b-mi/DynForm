@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormFlowControlEditorComponent } from '../form-flow-control-editor/form-flow-control-editor.component';
 import { FormFlowService } from './form-flow.service';
@@ -23,7 +24,7 @@ import { FormFlowService } from './form-flow.service';
   imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule,
     MatCheckboxModule, NgClass, MatButtonModule, MatIconModule, MatSlideToggleModule,
     MatCardModule, MatDatepickerModule, MatChipsModule, MatButtonToggleModule,
-    FormFlowControlEditorComponent, FormsModule],
+    FormFlowControlEditorComponent, FormsModule, OverlayModule],
   templateUrl: './form-flow-content.component.html',
   styleUrl: './form-flow-content.component.css'
 })
@@ -41,7 +42,7 @@ export class FormFlowContentComponent {
     this._editMode = v;
   }
 
-
+  isEditOpen = false;
 
   //'fill' | 'outline'
   private _form!: FormGroup;
