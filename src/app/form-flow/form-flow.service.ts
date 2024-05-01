@@ -6,6 +6,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class FormFlowService {
 
+
   private fb = inject(FormBuilder);
 
   createFormGroup(controls: any[]): FormGroup {
@@ -59,4 +60,18 @@ export class FormFlowService {
   }
 
   constructor() { }
+
+  setControlData(formGroup: FormGroup, ctls: any[], data: any) {
+    console.log('ffs', formGroup);
+    
+    ctls.forEach(ctl => {
+      let cval = ctl.value;
+      if (data && data[ctl.name]) {
+        cval = data[ctl.name];
+      }
+      console.log('ffsc', ctl.name, cval);
+      
+      formGroup.controls[ctl.name].setValue(cval);
+    });
+  }
 }

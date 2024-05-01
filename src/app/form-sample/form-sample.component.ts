@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormsModule, NgModel } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { FormFlowService } from '../form-flow/form-flow.service';
 import { JsonPipe } from '@angular/common';
@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormFlowControlEditorComponent } from '../form-flow-control-editor/form-flow-control-editor.component';
 
 @Component({
   selector: 'app-form-sample',
@@ -15,6 +17,7 @@ import { MatDividerModule } from '@angular/material/divider';
   styleUrl: './form-sample.component.css',
   standalone: true,
   imports: [
+    FormsModule,
     MatCardModule,
     ReactiveFormsModule,
     JsonPipe,
@@ -22,12 +25,16 @@ import { MatDividerModule } from '@angular/material/divider';
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
-    MatDividerModule
+    MatDividerModule,
+    MatCheckboxModule,
+    FormFlowControlEditorComponent
   ]
 })
 export class FormSampleComponent {
   private fservice = inject(FormFlowService);
   formGroup: FormGroup;
+  public editMode: boolean = false;
+  editedControl: any;
 
   constructor() {
     this.formGroup = this.fservice.createFormGroup(this.controls1);

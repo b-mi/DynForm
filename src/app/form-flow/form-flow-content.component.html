@@ -1,3 +1,6 @@
+@if(editMode){
+<button>editMode</button>
+}
 <div class="ff-container" [formGroup]="formGroup">
   @for (ctl of controls; track $index) {
 
@@ -35,8 +38,8 @@
 
     @case('checkbox') {
     <div class="ff-row">
-      <input matInput readonly="true" [disabled]="formGroup.get(ctl.name)?.disabled"> 
-      
+      <input matInput readonly="true" [disabled]="formGroup.get(ctl.name)?.disabled">
+
       <!-- <mat-checkbox [formControlName]="ctl.name"></mat-checkbox> -->
       <mat-slide-toggle hideIcon="false" [formControlName]="ctl.name" [required]="ctl.isRequired"></mat-slide-toggle>
 
@@ -46,7 +49,7 @@
 
 
     @default {
-    <input matInput [formControlName]="ctl.name" >}
+    <input matInput [formControlName]="ctl.name">}
     }
 
     @if(ctl.hintStart){
@@ -76,6 +79,12 @@
     <mat-error>{{ctl.label}} musí mať najviac {{ctl.maxLength}} znakov</mat-error>
     }
 
+    @if(editMode){
+    <button matSuffix mat-icon-button (click)="editCtrl(ctl);$event.stopPropagation()">
+      <mat-icon aria-label="label">edit</mat-icon>
+    </button>
+    }
+
   </mat-form-field>
   }
   @else(){
@@ -93,3 +102,8 @@
   </pre> -->
   }
 </div>
+
+@if(editedControl){
+<app-form-flow-control-editor [controlData]="editedControl"></app-form-flow-control-editor>
+
+}
