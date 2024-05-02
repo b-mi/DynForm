@@ -30,6 +30,7 @@ import { FormFlowService } from './form-flow.service';
 })
 export class FormFlowContentComponent {
 
+
   private fservice = inject(FormFlowService);
 
   private _editMode: boolean = false;
@@ -72,6 +73,66 @@ export class FormFlowContentComponent {
   editCtrl(ctl: any) {
     console.log('edit', ctl);
     this.editedControl = ctl;
+  }
+
+  move(ctl: any, cmd: string) {
+
+    const idx = this.controls.indexOf(ctl);
+    console.log('move', cmd, idx);
+
+
+    switch (cmd) {
+      case 'left':
+        if (idx > 0) {
+          this.moveItem(this.controls, idx, idx - 1);
+        }
+        break;
+      case 'smaller':
+        this.changeSize(ctl, -1);
+        break;
+      case 'bigger':
+        this.changeSize(ctl, 1);
+        break;
+      case 'right':
+        if (idx < this.controls.length - 1) {
+          this.moveItem(this.controls, idx, idx + 1);
+        }
+        break;
+
+    }
+  }
+  changeSize(ctl: any, par: number) {
+
+    const sizes: string[] = [
+      'quarter',
+      'third',
+      'half',
+      'two-thirds',
+      'three-quarters',
+      'full'
+    ];
+
+    const idx = sizes.indexOf(ctl.flex);
+    if (par === -1) {
+      //smaller
+      if (idx > 0) {
+        ctl.flex = sizes[idx - 1];
+      }
+    } else {
+      // bigger
+      if (idx < sizes.length - 1) {
+        ctl.flex = sizes[idx + 1];
+      }
+
+    }
+
+  }
+
+  moveItem(data: any[], from: number, to: number) {
+    // remove `from` item and store it
+    var f = data.splice(from, 1)[0];
+    // insert stored item into position `to`
+    data.splice(to, 0, f);
   }
 
 

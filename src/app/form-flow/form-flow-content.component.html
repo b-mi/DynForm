@@ -1,25 +1,57 @@
 <div class="ff-container" [formGroup]="formGroup">
   @for (ctl of controls; track $index) {
 
-  @if(!ctl.isNonMatFormField){
+  @if(editMode){
+  <div [ngClass]="ctl.flex" class="edit-control" draggable="true" ondragstart="drag(event)" ondrop="drop(event)"
+    ondragover="allowDrop(event)">
+    <div class="fx-col">
+      <div class="ff-row ff-space-between">
+        <mat-card-subtitle>
+          {{ctl.label}}
+        </mat-card-subtitle>
 
-  <!-- appearance: 'fill' | 'outline' -->
-  <mat-form-field [ngClass]="ctl.flex" floatLabel="always" appearance="fill" subscriptSizing="fixed">
-    @if(ctl.label){
-    <mat-label>{{ctl.label}}
-      @if(editMode){
-      <button cdkOverlayOrigin #trigger="cdkOverlayOrigin"
+        <mat-card-subtitle>
+          {{ctl.name}}
+        </mat-card-subtitle>
+
+
+      </div>
+      <div class="ff-row ff-space-between">
+        <mat-card-subtitle>
+          {{ctl.type}}
+        </mat-card-subtitle>
+        
+        <button cdkOverlayOrigin #trigger="cdkOverlayOrigin"
         (click)="editCtrl(ctl);isEditOpen = !isEditOpen;$event.stopPropagation()">Edit</button>
 
       <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isEditOpen">
         @if(editedControl && ctl === editedControl){
-        <div class="example-list">
+        <div class="editor">
           <app-form-flow-control-editor [controlData]="editedControl"></app-form-flow-control-editor>
         </div>
         }
       </ng-template>
-      }
-    </mat-label>
+
+
+      </div>
+      <div class="ff-row ff-space-between">
+        <button (click)="move(ctl, 'left')">&lt;=</button>
+        <button (click)="move(ctl, 'smaller')">-</button>
+        <button (click)="move(ctl, 'bigger')">+</button>
+        <button (click)="move(ctl, 'right')">=></button>
+
+      </div>
+    </div>
+  </div>
+  }
+  @else {
+  @if(!ctl.isNonMatFormField){
+
+  <!-- appearance: 'fill' | 'outline' -->
+  <mat-form-field [ngClass]="ctl.flex" class="example-box" floatLabel="always" appearance="fill"
+    subscriptSizing="fixed">
+    @if(ctl.label){
+    <mat-label>{{ctl.label}}</mat-label>
 
     }
     @switch(ctl.type){
@@ -101,7 +133,7 @@
   <div [ngClass]="ctl.flex"></div>
   }
   }
-
+  }
 
   }
   <!-- <pre>

@@ -1,4 +1,4 @@
-.example-list {
+.editor {
     width: 400px;
     border: solid 1px #ccc;
     border-radius: 5px;
@@ -7,3 +7,12 @@
     padding: 10px;
     margin: 0;
   }
+
+  .edit-control{
+    background-color: bisque;
+    border: 1px solid goldenrod;
+    height: 76px;
+  }
+
+
+  
