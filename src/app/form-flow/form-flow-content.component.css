@@ -1,18 +1,25 @@
 .editor {
-    width: 400px;
-    border: solid 1px #ccc;
-    border-radius: 5px;
-    background: #fff;
-    text-align: center;
-    padding: 10px;
-    margin: 0;
-  }
+  width: 400px;
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  background: #fff;
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+}
 
-  .edit-control{
-    background-color: azure;
-    border: 1px solid cyan;
-    height: 76px;
-  }
+.edit-control {
+  background-color: #e0e2ec;
+  border-bottom: 1px solid black;
+  height: 76px;
+  color: gray;
+  padding: 0 5px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
 
-
-  
+.edit-control-text {
+  font-size: 13px;
+  color: dimgray;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}

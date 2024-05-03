@@ -6,39 +6,41 @@
     ondragover="allowDrop(event)">
     <div class="fx-col">
       <div class="ff-row ff-space-between">
-        <mat-card-subtitle>
+        <div class="edit-control-text">
           {{ctl.label}}
-        </mat-card-subtitle>
+        </div>
 
-        <mat-card-subtitle>
+        <div class="edit-control-text">
           {{ctl.name}}
-        </mat-card-subtitle>
+        </div>
 
 
       </div>
       <div class="ff-row ff-space-between">
-        <mat-card-subtitle>
+        <div class="edit-control-text">
           {{ctl.type}}
-        </mat-card-subtitle>
-        
-        <button cdkOverlayOrigin #trigger="cdkOverlayOrigin"
-        (click)="editCtrl(ctl);isEditOpen = !isEditOpen;$event.stopPropagation()">Edit</button>
-
-      <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isEditOpen">
-        @if(editedControl && ctl === editedControl){
-        <div class="editor">
-          <app-form-flow-control-editor [controlData]="editedControl"></app-form-flow-control-editor>
         </div>
-        }
-      </ng-template>
+
+        <mat-icon cdkOverlayOrigin #trigger="cdkOverlayOrigin"
+          (click)="editCtrl(ctl);isEditOpen = !isEditOpen;$event.stopPropagation()">
+          edit
+        </mat-icon>
+
+        <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isEditOpen">
+          @if(editedControl && ctl === editedControl){
+          <div class="editor">
+            <app-form-flow-control-editor [controlData]="editedControl"></app-form-flow-control-editor>
+          </div>
+          }
+        </ng-template>
 
 
       </div>
-      <div class="ff-row ff-space-between" style="margin: 3px;">
-        <button (click)="move(ctl, 'left')">&lt;=</button>
-        <button (click)="move(ctl, 'smaller')">-</button>
-        <button (click)="move(ctl, 'bigger')">+</button>
-        <button (click)="move(ctl, 'right')">=></button>
+      <div class="ff-row ff-gap-1em" style="margin: 3px;">
+        <mat-icon (click)="move(ctl, 'left')">arrow_back</mat-icon>
+        <mat-icon (click)="move(ctl, 'smaller')">remove_circle_outline</mat-icon>
+        <mat-icon (click)="move(ctl, 'bigger')">add_circle_outline</mat-icon>
+        <mat-icon (click)="move(ctl, 'right')">arrow_forward</mat-icon>
 
       </div>
     </div>
