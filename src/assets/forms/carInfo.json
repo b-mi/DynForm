@@ -1,0 +1,75 @@
+[
+  {
+    "type": "text",
+    "label": "Car",
+    "name": "car_name",
+    "flex": "quarter",
+    "value": ""
+  },
+  {
+    "type": "date",
+    "label": "Date 1",
+    "name": "car_date1",
+    "flex": "quarter",
+    "value": null
+  },
+  {
+    "type": "date",
+    "label": "Date 2",
+    "name": "car_date2",
+    "flex": "quarter",
+    "value": null
+  },
+  {
+    "type": "checkbox",
+    "label": "Check",
+    "name": "check1",
+    "flex": "quarter",
+    "isRequired": true,
+    "value": null
+  },
+  {
+    "type": "text",
+    "label": "Car 2",
+    "name": "car_name2",
+    "flex": "quarter",
+    "value": ""
+  },
+  {
+    "type": "space",
+    "flex": "quarter",
+    "isNonMatFormField": true
+  },
+  {
+    "type": "number",
+    "label": "Age 2",
+    "name": "car_age2",
+    "flex": "quarter",
+    "value": 0
+  },
+  {
+    "type": "checkbox",
+    "label": "Check 2",
+    "name": "check2",
+    "flex": "quarter",
+    "isRequired": true,
+    "value": null
+  },
+  {
+    "type": "radio",
+    "label": "Sex",
+    "name": "sex",
+    "flex": "half",
+    "isRequired": true,
+    "values": [
+      {
+        "label": "Man",
+        "key": "M"
+      },
+      {
+        "label": "Woman",
+        "key": "W"
+      }
+    ]
+  }
+]

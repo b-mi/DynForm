@@ -20,6 +20,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormFlowControlEditorComponent } from '../form-flow-control-editor/form-flow-control-editor.component';
+import { HttpClient } from '@angular/common/http';
+import { ConfigService } from '../config.service';
 
 @Component({
   selector: 'app-form-flow-content',
@@ -36,9 +38,12 @@ import { FormFlowControlEditorComponent } from '../form-flow-control-editor/form
 export class FormFlowContentComponent {
 
 
+  private http = inject(HttpClient);
   private snack = inject(MatSnackBar);
 
   clipboard = inject(Clipboard);
+
+  private config = inject(ConfigService);
 
   private _editMode: boolean = false;
 
@@ -73,6 +78,19 @@ export class FormFlowContentComponent {
   public set controls(v: any[]) {
     this._controls = v;
   }
+
+
+  private _formId!: string;
+  public get formId(): string {
+    return this._formId;
+  }
+  @Input()
+  
+  public set formId(v: string) {
+    this._formId = v;
+  }
+
+
 
   editedControl: any = null;
 
@@ -162,6 +180,13 @@ export class FormFlowContentComponent {
     this.snack.open('Copied into clipboard', 'OK');
   }
 
-
+  saveToFile() {
+    const endpoint = this.config.formWriteServiceEndpoint;
+    console.log('save', endpoint, this.config);
+    
+    this.http.put(`${endpoint}/save-json/${this.formId}`, { data: this.controls }).subscribe(r => {
+      console.log(`put ${this.formId}`, r);
+    });
+  }
 
 }

@@ -50,7 +50,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/app/theme/theme.scss",
+              "src/app/theme.scss",
               "src/app/form-flow/form-flow.scss"
             ],
             "scripts": []
@@ -111,7 +111,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/app/theme/theme.scss",
+              "src/app/theme.scss",
               "src/app/form-flow/form-flow.scss"
             ],
             "scripts": []

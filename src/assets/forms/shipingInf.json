@@ -1,0 +1,110 @@
+[
+  {
+    "type": "text",
+    "label": "Company",
+    "name": "company",
+    "flex": "full",
+    "value": "",
+    "isRequired": true,
+    "minLength": 10,
+    "maxLength": 20,
+    "hintStart": "Description at start",
+    "hintEnd": "Description at end"
+  },
+  {
+    "type": "text",
+    "label": "First name",
+    "name": "firstName",
+    "flex": "half",
+    "value": "",
+    "isRequired": true,
+    "hintEnd": "Description at end"
+  },
+  {
+    "type": "text",
+    "label": "Last name",
+    "name": "lastName",
+    "flex": "half",
+    "value": ""
+  },
+  {
+    "type": "textarea",
+    "label": "Address",
+    "name": "address",
+    "flex": "full",
+    "value": "",
+    "isRequired": true
+  },
+  {
+    "type": "text",
+    "label": "City",
+    "name": "city",
+    "flex": "half",
+    "value": ""
+  },
+  {
+    "type": "select",
+    "label": "State",
+    "name": "state",
+    "flex": "half",
+    "values": [
+      {
+        "label": "Alabama",
+        "key": "AL"
+      },
+      {
+        "label": "Alaska",
+        "key": "AK"
+      },
+      {
+        "label": "American Samoa",
+        "key": "AS"
+      },
+      {
+        "label": "Arizona",
+        "key": "AZ"
+      },
+      {
+        "label": "Arkansas",
+        "key": "AR"
+      },
+      {
+        "label": "California",
+        "key": "CA"
+      },
+      {
+        "label": "Colorado",
+        "key": "CO"
+      }
+    ]
+  },
+  {
+    "type": "number",
+    "label": "Postal Code",
+    "name": "postal_code",
+    "flex": "half",
+    "isRequired": true,
+    "min": 10000,
+    "max": 99999
+  },
+  {
+    "type": "select",
+    "label": "Shipping",
+    "name": "shipping",
+    "flex": "half",
+    "values": [
+      {
+        "label": "Free Shipping",
+        "key": "FS"
+      },
+      {
+        "label": "Priority Shipping",
+        "key": "PS"
+      },
+      {
+        "label": "Next Day Shipping",
+        "key": "ND"
+      }
+    ]
+  }
+]

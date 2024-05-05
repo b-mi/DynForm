@@ -10,6 +10,7 @@
       <div></div>
       <div>
         <mat-icon matTooltip="Copy to clipboard" (click)="copyToClipboard()">content_copy</mat-icon>
+        <mat-icon matTooltip="Save" (click)="saveToFile()">save</mat-icon>
 
       </div>
 
@@ -79,7 +80,7 @@
   @if(!ctl.isNonMatFormField){
 
   <!-- appearance: 'fill' | 'outline' -->
-  <mat-form-field [ngClass]="ctl.flex" class="example-box" floatLabel="always" appearance="fill"
+  <mat-form-field [ngClass]="ctl.flex" class="example-box" floatLabel="always" appearance="outline"
     subscriptSizing="dynamic">
     @if(ctl.label){
     <mat-label>{{ctl.label}}</mat-label>

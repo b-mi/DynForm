@@ -9,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-form-sample',
@@ -29,6 +30,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   ]
 })
 export class FormSampleComponent {
+
+  private http = inject(HttpClient);
   private fservice = inject(FormFlowService);
   formGroup: FormGroup;
   public editMode: boolean = false;
@@ -211,5 +214,18 @@ export class FormSampleComponent {
         ctl?.disable();
     });
   }
+
+  api() {
+    // this.http.get('http://localhost:3000/').subscribe(r => {
+    //   console.log('get', r);
+    // });
+
+    // this.http.put('http://localhost:3000/save-json/abc', { data: this.controls1 }).subscribe(r => {
+    //   console.log('put abc', r);
+    // });
+
+
+  }
+
 
 }
