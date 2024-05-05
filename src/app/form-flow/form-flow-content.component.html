@@ -80,7 +80,7 @@
 
   <!-- appearance: 'fill' | 'outline' -->
   <mat-form-field [ngClass]="ctl.flex" class="example-box" floatLabel="always" appearance="fill"
-    subscriptSizing="fixed">
+    subscriptSizing="dynamic">
     @if(ctl.label){
     <mat-label>{{ctl.label}}</mat-label>
 
@@ -124,7 +124,7 @@
     <div class="ff-row">
       <input matInput readonly="true" [disabled]="formGroup.get(ctl.name)?.disabled" class="width0">
 
-      <mat-radio-group [formControlName]="ctl.name" [required]="ctl.isRequired" class="ff-row ff-space-between radio-group">
+      <mat-radio-group [formControlName]="ctl.name" [required]="ctl.isRequired" [required]="ctl.isRequired" class="ff-row ff-space-between radio-group">
         @for (item of ctl.values; track item) {
 
         <mat-radio-button style="flex: 1;" [value]="item.key">{{ item.label }}</mat-radio-button>
