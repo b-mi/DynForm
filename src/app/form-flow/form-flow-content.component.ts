@@ -80,11 +80,12 @@ export class FormFlowContentComponent {
   }
 
 
+  
   private _formId!: string;
+  @Input()
   public get formId(): string {
     return this._formId;
   }
-  @Input()
   
   public set formId(v: string) {
     this._formId = v;
