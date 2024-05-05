@@ -8,15 +8,14 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { NgClass } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { ButtonsComponent } from './buttons/buttons.component';
-import { OverlayTestComponent } from './overlay-test/overlay-test.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, FormSampleComponent, TypographyComponent,
-    ThemeSwitchComponent, NgClass, MatTabsModule, MatCardModule, ButtonsComponent,
-    OverlayTestComponent],
+    ThemeSwitchComponent, NgClass, MatTabsModule, MatCardModule, ButtonsComponent
+    ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

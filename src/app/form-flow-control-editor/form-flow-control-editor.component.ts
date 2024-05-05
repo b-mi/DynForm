@@ -44,7 +44,7 @@ export class FormFlowControlEditorComponent implements OnInit {
       "type": "text",
       "label": "name",
       "name": "name",
-      "flex": 'half',
+      "flex": 'third',
       "value": "",
       isRequired: true,
     },
@@ -52,7 +52,7 @@ export class FormFlowControlEditorComponent implements OnInit {
       "type": "text",
       "label": "label",
       "name": "label",
-      "flex": 'half',
+      "flex": 'third',
       "value": "",
       isRequired: true,
     },
@@ -60,7 +60,7 @@ export class FormFlowControlEditorComponent implements OnInit {
       "type": "select",
       "label": "type",
       "name": "type",
-      "flex": 'half',
+      "flex": 'third',
       "values": [
         { label: 'text', key: 'text' },
         { label: 'textarea', key: 'textarea' },
@@ -76,7 +76,7 @@ export class FormFlowControlEditorComponent implements OnInit {
       "type": "select",
       "label": "flex",
       "name": "flex",
-      "flex": 'half',
+      "flex": 'third',
       "values": [
         { label: '100%', key: 'full' },
         { label: '75%', key: 'three-quarters' },
@@ -90,14 +90,14 @@ export class FormFlowControlEditorComponent implements OnInit {
       "type": "checkbox",
       "label": "isRequired",
       "name": "isRequired",
-      "flex": 'half',
+      "flex": 'third',
       "value": null,
     },
     {
       "type": "text",
       "label": "value",
       "name": "value",
-      "flex": 'half',
+      "flex": 'third',
       "value": null,
     },
 
@@ -105,29 +105,35 @@ export class FormFlowControlEditorComponent implements OnInit {
       "type": "number",
       "label": "minLength",
       "name": "minLength",
-      "flex": 'half',
+      "flex": 'third',
       "value": null,
     },
     {
       "type": "number",
       "label": "maxLength",
       "name": "maxLength",
-      "flex": 'half',
+      "flex": 'third',
       "value": null,
     },
     {
       "type": "number",
       "label": "min",
       "name": "min",
-      "flex": 'half',
+      "flex": 'third',
       "value": null,
     },
     {
       "type": "number",
       "label": "max",
       "name": "max",
-      "flex": 'half',
+      "flex": 'third',
       "value": null,
+    },
+    {
+     type: "space",
+     name: "",
+     "flex": 'two-thirds',
+
     },
     {
       "type": "text",
@@ -158,6 +164,9 @@ export class FormFlowControlEditorComponent implements OnInit {
 
 
     for (let ec of this.edControls) {
+
+      if( ec.type === 'space' )
+        continue;
 
       const val = this.formGroup.get(ec.name)?.value;
       if (!val && !this._controlData[ec.name]) continue; // if both are null - no change 

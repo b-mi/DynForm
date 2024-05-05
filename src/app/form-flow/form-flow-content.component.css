@@ -1,5 +1,5 @@
 .editor {
-  width: 400px;
+  width: 600px;
   border: solid 1px #ccc;
   border-radius: 5px;
   background: #fff;
@@ -22,4 +22,14 @@
   font-size: 13px;
   color: dimgray;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+
+
+.width0 {
+  width: 0;
+}
+
+.radio-group {
+  width: 100%;
 }

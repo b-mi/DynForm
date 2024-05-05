@@ -63,15 +63,17 @@ export class FormFlowService {
 
   setControlData(formGroup: FormGroup, ctls: any[], data: any) {
     console.log('ffs', formGroup);
-    
+
     ctls.forEach(ctl => {
-      let cval = ctl.value;
-      if (data && data[ctl.name]) {
-        cval = data[ctl.name];
+      if (ctl.type !== 'space') {
+        let cval = ctl.value;
+        if (data && data[ctl.name]) {
+          cval = data[ctl.name];
+        }
+        console.log('ffsc', ctl.name, cval);
+
+        formGroup.controls[ctl.name].setValue(cval);
       }
-      console.log('ffsc', ctl.name, cval);
-      
-      formGroup.controls[ctl.name].setValue(cval);
     });
   }
 }

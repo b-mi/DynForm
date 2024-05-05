@@ -1,4 +1,4 @@
-import { NgClass } from '@angular/common';
+import { JsonPipe, NgClass } from '@angular/common';
 import { Component, Input, inject } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -10,8 +10,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatChipsModule } from '@angular/material/chips';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormFlowControlEditorComponent } from '../form-flow-control-editor/form-flow-control-editor.component';
@@ -23,6 +28,7 @@ import { FormFlowControlEditorComponent } from '../form-flow-control-editor/form
   imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule,
     MatCheckboxModule, NgClass, MatButtonModule, MatIconModule, MatSlideToggleModule,
     MatCardModule, MatDatepickerModule, MatChipsModule, MatButtonToggleModule,
+    MatTooltipModule, MatExpansionModule, JsonPipe, MatSnackBarModule, MatRadioModule,
     FormFlowControlEditorComponent, FormsModule, OverlayModule],
   templateUrl: './form-flow-content.component.html',
   styleUrl: './form-flow-content.component.css'
@@ -30,7 +36,9 @@ import { FormFlowControlEditorComponent } from '../form-flow-control-editor/form
 export class FormFlowContentComponent {
 
 
-  // private fservice = inject(FormFlowService);
+  private snack = inject(MatSnackBar);
+
+  clipboard = inject(Clipboard);
 
   private _editMode: boolean = false;
 
@@ -148,6 +156,12 @@ export class FormFlowContentComponent {
 
     }
   }
+
+  copyToClipboard() {
+    this.clipboard.copy(JSON.stringify(this.controls, null, 4));
+    this.snack.open('Copied into clipboard', 'OK');
+  }
+
 
 
 }

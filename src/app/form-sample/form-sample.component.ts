@@ -181,7 +181,17 @@ export class FormSampleComponent {
       isRequired: true,
       "value": null,
     },
-
+    {
+      "type": "radio",
+      "label": "Sex",
+      "name": "sex",
+      "flex": 'half',
+      isRequired: true,
+      "values": [
+        { label: 'Man', key: 'M' },
+        { label: 'Woman', key: 'W' }
+      ],
+    },
 
   ]
 
