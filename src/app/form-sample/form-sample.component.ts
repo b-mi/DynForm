@@ -215,17 +215,7 @@ export class FormSampleComponent {
     });
   }
 
-  api() {
-    // this.http.get('http://localhost:3000/').subscribe(r => {
-    //   console.log('get', r);
-    // });
 
-    // this.http.put('http://localhost:3000/save-json/abc', { data: this.controls1 }).subscribe(r => {
-    //   console.log('put abc', r);
-    // });
-
-
-  }
 
 
 }
