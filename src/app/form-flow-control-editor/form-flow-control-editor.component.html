@@ -2,13 +2,20 @@
     {{controlData | json}}
 </pre> -->
 
+<mat-toolbar color="accent" class="mat-elevation-z6">
+  <div>{{controlData.label}}</div>
+  <span class="ff-spacer"></span>
+  <div>{{controlData.name}}</div>
+
+</mat-toolbar>
+
 @if(formGroup){
 <app-form-flow-content [formGroup]="formGroup" [controls]="edControls" />
 
 <div class="ff-row ff-space-around">
-    <button mat-flat-button (click)="save(false)">Cancel</button>
-    <button mat-raised-button (click)="save(true)">Save</button>
+  <button mat-flat-button (click)="save(false)">Cancel</button>
+  <button mat-raised-button (click)="save(true)">Save</button>
 
 
-  </div>
+</div>
 }

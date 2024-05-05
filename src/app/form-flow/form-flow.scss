@@ -38,6 +38,10 @@ $showColors: false;
     color: dimgray;
 }
 
+.ff-spacer {
+    flex: 1 1 auto;
+  }
+
 .quarter {
     grid-column: span 3;
     @if ($showColors) {

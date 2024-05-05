@@ -1,14 +1,16 @@
 import { JsonPipe } from '@angular/common';
-import { Component, Input, OnInit, forwardRef, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, forwardRef, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormFlowService } from '../form-flow/form-flow.service';
 import { FormFlowContentComponent } from '../form-flow/form-flow-content.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-form-flow-control-editor',
   standalone: true,
-  imports: [JsonPipe, MatButtonModule, forwardRef(() => FormFlowContentComponent)],
+  imports: [JsonPipe, MatButtonModule, forwardRef(() => FormFlowContentComponent), 
+    MatToolbarModule],
   templateUrl: './form-flow-control-editor.component.html',
   styleUrl: './form-flow-control-editor.component.css'
 })
@@ -22,13 +24,19 @@ export class FormFlowControlEditorComponent implements OnInit {
     return this._controlData;
   }
   public set controlData(v: any) {
-    this.formGroup = this.fservice.createFormGroup(this.edControls);
-    this._controlData = v;
-    console.log('ffce controlData', v);
-    this.fservice.setControlData(this.formGroup, this.edControls, v);
+    if (!this._controlData && v) {
+      this.formGroup = this.fservice.createFormGroup(this.edControls);
+      this._controlData = v;
+      this.fservice.setControlData(this.formGroup, this.edControls, v);
+      console.log('set controlData', this._controlData);
+
+    }
   }
 
   formGroup!: FormGroup;
+
+  @Output() onClose = new EventEmitter<any>();
+
 
   edControls = [
 
@@ -145,6 +153,26 @@ export class FormFlowControlEditorComponent implements OnInit {
   }
 
   save(doSave: boolean) {
+
+    console.log('save 1', this._controlData);
+
+
+    for (let ec of this.edControls) {
+
+      const val = this.formGroup.get(ec.name)?.value;
+      if (!val && !this._controlData[ec.name]) continue; // if both are null - no change 
+      if (val === this._controlData[ec.name]) continue; // if both are equal - no change 
+
+      console.log('changed', ec.name, val, this._controlData[ec.name]);
+      this._controlData[ec.name] = val;
+
+
+    }
+
+    // console.log('save 2', JSON.stringify(this._controlData, null, 4));
+
+
+    this.onClose.next({ doSave: doSave, data: this._controlData });
   }
 
 }

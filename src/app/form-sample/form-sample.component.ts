@@ -9,7 +9,6 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormFlowControlEditorComponent } from '../form-flow-control-editor/form-flow-control-editor.component';
 
 @Component({
   selector: 'app-form-sample',
@@ -26,8 +25,7 @@ import { FormFlowControlEditorComponent } from '../form-flow-control-editor/form
     MatToolbarModule,
     MatIconModule,
     MatDividerModule,
-    MatCheckboxModule,
-    FormFlowControlEditorComponent
+    MatCheckboxModule
   ]
 })
 export class FormSampleComponent {

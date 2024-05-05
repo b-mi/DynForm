@@ -22,14 +22,16 @@
         </div>
 
         <mat-icon cdkOverlayOrigin #trigger="cdkOverlayOrigin"
-          (click)="editCtrl(ctl);isEditOpen = !isEditOpen;$event.stopPropagation()">
+          (click)="editCtrl(ctl);$event.stopPropagation()">
           edit
         </mat-icon>
 
-        <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isEditOpen">
+        <ng-template cdkConnectedOverlay 
+        [cdkConnectedOverlayOrigin]="trigger" 
+        [cdkConnectedOverlayOpen]="isEditOpen">
           @if(editedControl && ctl === editedControl){
           <div class="editor">
-            <app-form-flow-control-editor [controlData]="editedControl"></app-form-flow-control-editor>
+            <app-form-flow-control-editor [controlData]="editedControl" (onClose)="closeEditOverlay($event)"></app-form-flow-control-editor>
           </div>
           }
         </ng-template>

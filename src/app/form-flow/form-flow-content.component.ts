@@ -15,7 +15,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormFlowControlEditorComponent } from '../form-flow-control-editor/form-flow-control-editor.component';
-import { FormFlowService } from './form-flow.service';
 
 @Component({
   selector: 'app-form-flow-content',
@@ -31,7 +30,7 @@ import { FormFlowService } from './form-flow.service';
 export class FormFlowContentComponent {
 
 
-  private fservice = inject(FormFlowService);
+  // private fservice = inject(FormFlowService);
 
   private _editMode: boolean = false;
 
@@ -71,8 +70,11 @@ export class FormFlowContentComponent {
 
 
   editCtrl(ctl: any) {
-    console.log('edit', ctl);
-    this.editedControl = ctl;
+    if (!this.isEditOpen) {
+      console.log('edit', ctl);
+      this.editedControl = ctl;
+      this.isEditOpen = true;
+    }
   }
 
   move(ctl: any, cmd: string) {
@@ -133,6 +135,18 @@ export class FormFlowContentComponent {
     var f = data.splice(from, 1)[0];
     // insert stored item into position `to`
     data.splice(to, 0, f);
+  }
+
+  closeEditOverlay(event: any) {
+    console.log('close edit', event);
+    this.isEditOpen = false;
+    if (event.doSave) {
+      const idx = this.controls.findIndex((i) => i.name === event.data.name);
+      console.log('idx', idx);
+      this.controls[idx] = event.data;
+      this.editedControl = undefined;
+
+    }
   }
 
 
