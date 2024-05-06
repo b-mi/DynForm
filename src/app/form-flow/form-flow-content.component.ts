@@ -18,7 +18,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { FormFlowControlEditorComponent } from '../form-flow-control-editor/form-flow-control-editor.component';
+import { FormFlowControlEditorComponent } from './form-flow-control-editor.component';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../config.service';
 import { lastValueFrom } from 'rxjs';

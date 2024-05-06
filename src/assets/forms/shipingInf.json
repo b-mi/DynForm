@@ -18,14 +18,15 @@
     "flex": "half",
     "value": "",
     "isRequired": true,
-    "hintEnd": "Description at end"
+    "hintEnd": "Description at enddd"
   },
   {
     "type": "text",
     "label": "Last name",
     "name": "lastName",
     "flex": "half",
-    "value": ""
+    "value": "",
+    "isRequired": true
   },
   {
     "type": "divider",

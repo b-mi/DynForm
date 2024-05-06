@@ -1,8 +1,8 @@
 import { JsonPipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, forwardRef, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormFlowService } from '../form-flow/form-flow.service';
-import { FormFlowContentComponent } from '../form-flow/form-flow-content.component';
+import { FormFlowService } from './form-flow.service';
+import { FormFlowContentComponent } from './form-flow-content.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
