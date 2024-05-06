@@ -28,6 +28,11 @@
     "value": ""
   },
   {
+    "type": "divider",
+    "flex": "full",
+    "isNonMatFormField": true
+  },
+  {
     "type": "textarea",
     "label": "Address",
     "name": "address",

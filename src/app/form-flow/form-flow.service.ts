@@ -23,7 +23,7 @@ export class FormFlowService {
 
   appendToFormGroup(fgrp: FormGroup<any>, controls: any[]) {
     controls.forEach(ctl => {
-      if (ctl.type === 'space') {
+      if (ctl.type === 'space' || ctl.type === 'divider') {
         ctl.isNonMatFormField = true;
       }
       else {
@@ -67,7 +67,6 @@ export class FormFlowService {
   constructor() { }
 
   setControlData(formGroup: FormGroup, ctls: any[], data: any) {
-    console.log('ffs', formGroup);
 
     ctls.forEach(ctl => {
       if (ctl.type !== 'space') {
@@ -75,8 +74,6 @@ export class FormFlowService {
         if (data && data[ctl.name]) {
           cval = data[ctl.name];
         }
-        console.log('ffsc', ctl.name, cval);
-
         formGroup.controls[ctl.name].setValue(cval);
       }
     });

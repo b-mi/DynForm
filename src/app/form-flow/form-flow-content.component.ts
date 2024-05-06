@@ -23,6 +23,7 @@ import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../config.service';
 import { lastValueFrom } from 'rxjs';
 import { FormFlowService } from './form-flow.service';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-form-flow-content',
@@ -32,7 +33,7 @@ import { FormFlowService } from './form-flow.service';
     MatCheckboxModule, NgClass, MatButtonModule, MatIconModule, MatSlideToggleModule,
     MatCardModule, MatDatepickerModule, MatChipsModule, MatButtonToggleModule,
     MatTooltipModule, JsonPipe, MatSnackBarModule, MatRadioModule,
-    FormFlowControlEditorComponent, FormsModule, OverlayModule],
+    FormFlowControlEditorComponent, FormsModule, OverlayModule, MatDividerModule],
   templateUrl: './form-flow-content.component.html',
   styleUrl: './form-flow-content.component.css'
 })
@@ -59,6 +60,9 @@ export class FormFlowContentComponent {
   }
 
   isEditOpen = false;
+
+
+  appearance : MatFormFieldAppearance = 'fill'; // fill, outline
 
   //'fill' | 'outline'
   private _form!: FormGroup;
