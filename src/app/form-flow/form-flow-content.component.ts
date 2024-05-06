@@ -16,12 +16,13 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormFlowControlEditorComponent } from '../form-flow-control-editor/form-flow-control-editor.component';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../config.service';
+import { lastValueFrom } from 'rxjs';
+import { FormFlowService } from './form-flow.service';
 
 @Component({
   selector: 'app-form-flow-content',
@@ -30,7 +31,7 @@ import { ConfigService } from '../config.service';
   imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule,
     MatCheckboxModule, NgClass, MatButtonModule, MatIconModule, MatSlideToggleModule,
     MatCardModule, MatDatepickerModule, MatChipsModule, MatButtonToggleModule,
-    MatTooltipModule, MatExpansionModule, JsonPipe, MatSnackBarModule, MatRadioModule,
+    MatTooltipModule, JsonPipe, MatSnackBarModule, MatRadioModule,
     FormFlowControlEditorComponent, FormsModule, OverlayModule],
   templateUrl: './form-flow-content.component.html',
   styleUrl: './form-flow-content.component.css'
@@ -43,7 +44,9 @@ export class FormFlowContentComponent {
 
   clipboard = inject(Clipboard);
 
-  private config = inject(ConfigService);
+  protected config = inject(ConfigService);
+
+  private fservice = inject(FormFlowService);
 
   private _editMode: boolean = false;
 
@@ -80,13 +83,13 @@ export class FormFlowContentComponent {
   }
 
 
-  
+
   private _formId!: string;
   @Input()
   public get formId(): string {
     return this._formId;
   }
-  
+
   public set formId(v: string) {
     this._formId = v;
   }
@@ -181,13 +184,11 @@ export class FormFlowContentComponent {
     this.snack.open('Copied into clipboard', 'OK');
   }
 
-  saveToFile() {
-    const endpoint = this.config.formWriteServiceEndpoint;
-    console.log('save', endpoint, this.config);
-    
-    this.http.put(`${endpoint}/save-json/${this.formId}`, { data: this.controls }).subscribe(r => {
-      console.log(`put ${this.formId}`, r);
-    });
+  async saveToFile() {
+    await this.fservice.saveToFile(this.formId, this.controls);
   }
+
+
+
 
 }

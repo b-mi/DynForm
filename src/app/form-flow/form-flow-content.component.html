@@ -1,26 +1,15 @@
 @if(editMode){
-<mat-expansion-panel>
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      JSON
-    </mat-panel-title>
-  </mat-expansion-panel-header>
-  <div class="ff-col">
-    <div class="ff-row ff-space-between">
-      <div></div>
-      <div>
-        <mat-icon matTooltip="Copy to clipboard" (click)="copyToClipboard()">content_copy</mat-icon>
-        <mat-icon matTooltip="Save" (click)="saveToFile()">save</mat-icon>
-
-      </div>
-
-    </div>
+<mat-card-subtitle>
+  <div class="ff-row ff-space-between">
+    <div>Editing form: {{config.formPath}}/{{formId}}.json</div>
     <div>
-      <pre>{{controls | json}}</pre>
+      <!-- <mat-icon matTooltip="Copy to clipboard" (click)="copyToClipboard()">content_copy</mat-icon> -->
+      <mat-icon matTooltip="Save to json file" (click)="saveToFile()">save</mat-icon>
 
     </div>
+
   </div>
-</mat-expansion-panel>
+</mat-card-subtitle>
 }
 <div class="ff-container" [formGroup]="formGroup">
   @for (ctl of controls; track $index) {
@@ -125,7 +114,8 @@
     <div class="ff-row">
       <input matInput readonly="true" [disabled]="formGroup.get(ctl.name)?.disabled" class="width0">
 
-      <mat-radio-group [formControlName]="ctl.name" [required]="ctl.isRequired" [required]="ctl.isRequired" class="ff-row ff-space-between radio-group">
+      <mat-radio-group [formControlName]="ctl.name" [required]="ctl.isRequired" [required]="ctl.isRequired"
+        class="ff-row ff-space-between radio-group">
         @for (item of ctl.values; track item) {
 
         <mat-radio-button style="flex: 1;" [value]="item.key">{{ item.label }}</mat-radio-button>

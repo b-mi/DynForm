@@ -1,3 +1,4 @@
 {
-	"formWriteServiceEndpoint": "http://localhost:3000"
+	"formWriteServiceEndpoint": "http://localhost:3000",
+	"formPath": "h:/Data/repos/ng/DynForm/src/assets/forms"
 }

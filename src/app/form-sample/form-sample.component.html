@@ -1,6 +1,8 @@
 <mat-toolbar color="primary" class="mat-elevation-z6">
   <span class="mat-mdc-card-title">title</span>
 </mat-toolbar>
+@if(formGroup){
+
 <form [formGroup]="formGroup" novalidate (ngSubmit)="onSubmit()">
 
   <mat-card class="main-card">
@@ -9,7 +11,8 @@
         <mat-card-subtitle>Shipping Information</mat-card-subtitle>
       </mat-card-header>
 
-      <app-form-flow-content [formGroup]="formGroup" formId="shipingInf" [controls]="controls1" [editMode]="editMode" />
+      <app-form-flow-content [formGroup]="formGroup" formId="shipingInf" [controls]="ctlsShipping"
+        [editMode]="editMode" />
 
     </mat-card-content>
   </mat-card>
@@ -21,7 +24,7 @@
         <mat-card-subtitle>Car info</mat-card-subtitle>
       </mat-card-header>
 
-      <app-form-flow-content [formGroup]="formGroup" formId="carInfo" [controls]="controls2" [editMode]="editMode" />
+      <app-form-flow-content [formGroup]="formGroup" formId="carInfo" [controls]="ctlsCarInf" [editMode]="editMode" />
 
     </mat-card-content>
   </mat-card>
@@ -44,8 +47,4 @@
   {{formGroup.value | json}}
 </pre>
 
-
-<pre>
-  {{controls1 | json}}
-</pre>
-
+}

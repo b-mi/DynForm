@@ -1,13 +1,18 @@
 import { Injectable, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ConfigService } from '../config.service';
+import { lastValueFrom } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormFlowService {
-
+  
 
   private fb = inject(FormBuilder);
+  private config = inject(ConfigService);
+  private http = inject(HttpClient);
 
   createFormGroup(controls: any[]): FormGroup {
     const fgrp = this.fb.group({});
@@ -76,4 +81,30 @@ export class FormFlowService {
       }
     });
   }
+
+  async loadFormDef(formId: string) {
+    console.log('loadFormDef', formId);
+    
+    const formPath = this.config.formPath;
+    const assetIdx = formPath.indexOf('/assets/');
+    const fn = formPath.substring(assetIdx) + '/' + formId + '.json';
+
+    const controls = <any[]>await lastValueFrom(this.http.get(fn));
+    console.log('loadFormDef', fn, controls);
+    // const formPath = `${this.config.formPath}/${this.formId}.json`;
+    return controls;
+  }
+
+  async saveToFile(formId: string, controls: any[]) {
+    const endpoint = this.config.formWriteServiceEndpoint;
+    const formPath = this.config.formPath;
+    console.log('save', endpoint, formPath);
+
+    const response = await lastValueFrom(this.http.put(`${endpoint}/save-json/${formId}`, { formPath: formPath, data: controls }));
+    console.log(`put ${formId}`, response);
+
+  }
+
+
+
 }
