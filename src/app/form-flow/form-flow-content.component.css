@@ -33,3 +33,42 @@
 .radio-group {
   width: 100%;
 }
+
+.ff-type-text {
+  color: blue;
+  font-weight: bolder;
+}
+
+.ff-type-textarea {
+  color: brown;
+  font-weight: bolder;
+}
+
+.ff-type-select {
+  color: green;
+  font-weight: bolder;
+}
+
+.ff-type-number {
+  color: orangered;
+  font-weight: bolder;
+}
+
+.ff-type-date {
+  color: olive;
+  font-weight: bolder;
+}
+
+.ff-type-checkbox {
+  color: slateblue;
+  font-weight: bolder;
+}
+
+.ff-type-radio {
+  color: seagreen;
+  font-weight: bolder;
+}
+
+.ff-name {
+  font-weight: bolder;
+}

@@ -1,5 +1,13 @@
 [
   {
+    "type": "checkbox",
+    "label": "Check",
+    "name": "check1",
+    "flex": "quarter",
+    "isRequired": true,
+    "value": true
+  },
+  {
     "type": "text",
     "label": "Car",
     "name": "car_name",
@@ -18,14 +26,6 @@
     "label": "Date 2",
     "name": "car_date2",
     "flex": "quarter",
-    "value": null
-  },
-  {
-    "type": "checkbox",
-    "label": "Check",
-    "name": "check1",
-    "flex": "quarter",
-    "isRequired": true,
     "value": null
   },
   {
@@ -70,6 +70,7 @@
         "label": "Woman",
         "key": "W"
       }
-    ]
+    ],
+    "value": "W"
   }
 ]

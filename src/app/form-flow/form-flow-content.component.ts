@@ -37,7 +37,7 @@ import { FormFlowService } from './form-flow.service';
   styleUrl: './form-flow-content.component.css'
 })
 export class FormFlowContentComponent {
-
+  
 
   private http = inject(HttpClient);
   private snack = inject(MatSnackBar);
@@ -188,6 +188,9 @@ export class FormFlowContentComponent {
     await this.fservice.saveToFile(this.formId, this.controls);
   }
 
+  cancelEdit() {
+    this.editMode = false;
+  }
 
 
 

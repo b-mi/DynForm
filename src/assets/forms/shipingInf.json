@@ -1,7 +1,7 @@
 [
   {
     "type": "text",
-    "label": "Company",
+    "label": "Company2",
     "name": "company",
     "flex": "full",
     "value": "",
@@ -40,7 +40,8 @@
     "label": "City",
     "name": "city",
     "flex": "half",
-    "value": ""
+    "value": "",
+    "isRequired": true
   },
   {
     "type": "select",

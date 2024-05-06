@@ -1,6 +1,7 @@
 @if(editMode){
 <mat-card-subtitle>
   <div class="ff-row ff-space-between">
+    <mat-icon matTooltip="Cancel editing" (click)="cancelEdit()">cancel</mat-icon>
     <div>Editing form: {{config.formPath}}/{{formId}}.json</div>
     <div>
       <!-- <mat-icon matTooltip="Copy to clipboard" (click)="copyToClipboard()">content_copy</mat-icon> -->
@@ -23,14 +24,14 @@
           {{ctl.label}}
         </div>
 
-        <div class="edit-control-text">
+        <div class="edit-control-text ff-name">
           {{ctl.name}}
         </div>
 
 
       </div>
       <div class="ff-row ff-space-between">
-        <div class="edit-control-text">
+        <div class="edit-control-text" [ngClass]="'ff-type-' + ctl.type">
           {{ctl.type}}
         </div>
 
