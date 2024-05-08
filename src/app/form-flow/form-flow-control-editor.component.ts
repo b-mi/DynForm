@@ -64,10 +64,15 @@ export class FormFlowControlEditorComponent implements OnInit {
         { label: 'text', key: 'text' },
         { label: 'textarea', key: 'textarea' },
         { label: 'select', key: 'select' },
+        { label: 'multi-select', key: 'multi-select' },
         { label: 'checkbox', key: 'checkbox' },
+        { label: 'button-toggle', key: 'button-toggle' },
         { label: 'number', key: 'number' },
         { label: 'date', key: 'date' },
         { label: 'space', key: 'space' },
+        { label: 'button-toggle-multiple', key: 'button-toggle-multiple' },
+
+        
 
       ],
     },

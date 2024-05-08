@@ -45,7 +45,7 @@
     "type": "text",
     "label": "City",
     "name": "city",
-    "flex": "half",
+    "flex": "third",
     "value": "",
     "isRequired": true
   },
@@ -53,7 +53,7 @@
     "type": "select",
     "label": "State",
     "name": "state",
-    "flex": "half",
+    "flex": "third",
     "values": [
       {
         "label": "Alabama",
@@ -89,7 +89,7 @@
     "type": "number",
     "label": "Postal Code",
     "name": "postal_code",
-    "flex": "half",
+    "flex": "third",
     "isRequired": true,
     "min": 10000,
     "max": 99999
@@ -98,7 +98,7 @@
     "type": "select",
     "label": "Shipping",
     "name": "shipping",
-    "flex": "half",
+    "flex": "two-thirds",
     "values": [
       {
         "label": "Free Shipping",
@@ -111,6 +111,42 @@
       {
         "label": "Next Day Shipping",
         "key": "ND"
+      }
+    ]
+  },
+  {
+    "type": "multiselect",
+    "label": "State list",
+    "name": "state_list",
+    "flex": "full",
+    "values": [
+      {
+        "label": "Alabama",
+        "key": "AL"
+      },
+      {
+        "label": "Alaska",
+        "key": "AK"
+      },
+      {
+        "label": "American Samoa",
+        "key": "AS"
+      },
+      {
+        "label": "Arizona",
+        "key": "AZ"
+      },
+      {
+        "label": "Arkansas",
+        "key": "AR"
+      },
+      {
+        "label": "California",
+        "key": "CA"
+      },
+      {
+        "label": "Colorado",
+        "key": "CO"
       }
     ]
   }

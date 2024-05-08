@@ -72,5 +72,77 @@
       }
     ],
     "value": "W"
+  },
+  {
+    "type": "buttontoggle",
+    "label": "Appearance",
+    "name": "appearance",
+    "flex": "half",
+    "isRequired": true,
+    "values": [
+      {
+        "label": "Bold",
+        "key": "B"
+      },
+      {
+        "label": "Italic",
+        "key": "I"
+      },
+      {
+        "label": "Underline",
+        "key": "U"
+      }
+    ],
+    "value": "I"
+  },
+  {
+    "type": "button-toggle-multiple",
+    "label": "Possible colors",
+    "name": "color",
+    "flex": "full",
+    "isRequired": true,
+    "values": [
+      {
+        "label": "Red",
+        "key": "R"
+      },
+      {
+        "label": "Green",
+        "key": "G"
+      },
+      {
+        "label": "Blue",
+        "key": "B"
+      },
+      {
+        "label": "White",
+        "key": "W"
+      },
+      {
+        "label": "Black",
+        "key": "BL"
+      },
+      {
+        "label": "Orange",
+        "key": "O"
+      },
+      {
+        "label": "Gold",
+        "key": "G"
+      },
+      {
+        "label": "Magenta",
+        "key": "M"
+      },
+      {
+        "label": "Lime",
+        "key": "L"
+      }
+    ],
+    "value": [
+      "BL",
+      "O",
+      "M"
+    ]
   }
 ]

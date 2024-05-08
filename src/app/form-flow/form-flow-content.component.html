@@ -84,6 +84,13 @@
       }
     </mat-select>
     }
+    @case('multi-select') {
+    <mat-select [formControlName]="ctl.name" multiple>
+      @for (item of ctl.values; track item) {
+      <mat-option [value]="item.key">{{ item.label }}</mat-option>
+      }
+    </mat-select>
+    }
     @case('number') {
     <input matInput [formControlName]="ctl.name" type="number" class="ff-number">
     }
@@ -117,6 +124,27 @@
       </mat-radio-group>
     </div>
     }
+    @case('button-toggle') {
+    <div class="ff-row ff-space-between">
+      <input matInput readonly="true" [disabled]="formGroup.get(ctl.name)?.disabled" class="width0">
+      <mat-button-toggle-group [formControlName]="ctl.name" [required]="ctl.isRequired" [required]="ctl.isRequired">
+        @for (item of ctl.values; track item) {
+        <mat-button-toggle [value]="item.key">{{ item.label }}</mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+    </div>
+    }
+    @case('button-toggle-multiple') {
+      <div class="ff-row ff-space-between">
+        <input matInput readonly="true" [disabled]="formGroup.get(ctl.name)?.disabled" class="width0">
+        <mat-button-toggle-group multiple [formControlName]="ctl.name" [required]="ctl.isRequired" [required]="ctl.isRequired">
+          @for (item of ctl.values; track item) {
+          <mat-button-toggle [value]="item.key">{{ item.label }}</mat-button-toggle>
+          }
+        </mat-button-toggle-group>
+      </div>
+      }
+
 
     @default {
     <input matInput [formControlName]="ctl.name">}
@@ -162,10 +190,10 @@
   }
 
   @case('divider') {
-    
-    <mat-divider [ngClass]="ctl.flex"></mat-divider>
-    }
-  
+
+  <mat-divider [ngClass]="ctl.flex"></mat-divider>
+  }
+
 
 
   }
