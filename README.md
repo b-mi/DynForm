@@ -1,8 +1,16 @@
-# NG-DynForms-ThemeSwitch
-Testing dynamic forms and angular material theme switcher, angular 17
+# DynForm
+Testing angular material dynamic forms, angular 17
 
 
 ## Form generator
+* Json file definition
+* Editing mode - node.js service (dyn-form-service) for storing json file into file system
+* Responsive
+* Support form validators and hints
+* Support for text, textarea, divider, space, select, number, checkbox, date, radio group
+* Support for widths full, half, thirds, quarters, max 1 up to 4 columns with automatic wrap
+* Support for moving controls in editing mode
+
 
 ## Presentation mode
 ![alt text](images/f1.png)
