@@ -105,7 +105,6 @@ export class FormFlowContentComponent {
 
   editCtrl(ctl: any) {
     if (!this.isEditOpen) {
-      console.log('edit', ctl);
       this.editedControl = ctl;
       this.isEditOpen = true;
     }
@@ -114,8 +113,6 @@ export class FormFlowContentComponent {
   move(ctl: any, cmd: string) {
 
     const idx = this.controls.indexOf(ctl);
-    console.log('move', cmd, idx);
-
 
     switch (cmd) {
       case 'left':
@@ -172,11 +169,9 @@ export class FormFlowContentComponent {
   }
 
   closeEditOverlay(event: any) {
-    console.log('close edit', event);
     this.isEditOpen = false;
     if (event.doSave) {
       const idx = this.controls.findIndex((i) => i.name === event.data.name);
-      console.log('idx', idx);
       this.controls[idx] = event.data;
       this.editedControl = undefined;
 

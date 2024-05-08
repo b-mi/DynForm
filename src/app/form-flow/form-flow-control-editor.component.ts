@@ -28,7 +28,6 @@ export class FormFlowControlEditorComponent implements OnInit {
       this.formGroup = this.fservice.createFormGroup(this.edControls);
       this._controlData = v;
       this.fservice.setControlData(this.formGroup, this.edControls, v);
-      console.log('set controlData', this._controlData);
 
     }
   }
@@ -160,9 +159,6 @@ export class FormFlowControlEditorComponent implements OnInit {
 
   save(doSave: boolean) {
 
-    console.log('save 1', this._controlData);
-
-
     for (let ec of this.edControls) {
 
       if( ec.type === 'space' )
@@ -172,14 +168,10 @@ export class FormFlowControlEditorComponent implements OnInit {
       if (!val && !this._controlData[ec.name]) continue; // if both are null - no change 
       if (val === this._controlData[ec.name]) continue; // if both are equal - no change 
 
-      console.log('changed', ec.name, val, this._controlData[ec.name]);
       this._controlData[ec.name] = val;
 
 
     }
-
-    // console.log('save 2', JSON.stringify(this._controlData, null, 4));
-
 
     this.onClose.next({ doSave: doSave, data: this._controlData });
   }

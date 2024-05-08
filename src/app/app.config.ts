@@ -29,7 +29,6 @@ export function initializeApp(config: ConfigService, http: HttpClient) {
       http.get('/assets/config.json')
       .pipe(tap(cf => {
         config.setValues(cf);
-        console.log('config', config);
       }))
     );
 }
