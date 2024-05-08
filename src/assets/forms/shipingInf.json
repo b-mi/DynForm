@@ -1,7 +1,7 @@
 [
   {
     "type": "text",
-    "label": "Company2",
+    "label": "Company",
     "name": "company",
     "flex": "full",
     "value": "",
