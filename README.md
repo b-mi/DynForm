@@ -7,12 +7,7 @@ Testing dynamic forms and angular material theme switcher, angular 17
 ![alt text](images/f1.png)
 ![alt text](images/f2.png)
 
-## Theme switch component
-
-![alt text](images/th1.png)
-
-Theme switch
-based on https://github.com/monacodelisa/Angular-Theming-Signals
+Related with [DynForm](https://github.com/b-mi/dyn-form-server)
 
 ## Material typography cheat list
 ![alt text](images/typomat.png)
