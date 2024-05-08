@@ -74,7 +74,7 @@
     "value": "W"
   },
   {
-    "type": "buttontoggle",
+    "type": "button-toggle",
     "label": "Appearance",
     "name": "appearance",
     "flex": "half",

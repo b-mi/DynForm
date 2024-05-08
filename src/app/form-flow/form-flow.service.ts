@@ -1,14 +1,14 @@
 import { Injectable, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfigService } from '../config.service';
-import { lastValueFrom } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormFlowService {
-  
+
 
   private fb = inject(FormBuilder);
   private config = inject(ConfigService);
@@ -80,7 +80,7 @@ export class FormFlowService {
   }
 
   async loadFormDef(formId: string) {
-    
+
     const formPath = this.config.formPath;
     const assetIdx = formPath.indexOf('/assets/');
     const fn = formPath.substring(assetIdx) + '/' + formId + '.json';
@@ -98,6 +98,17 @@ export class FormFlowService {
 
   }
 
+  getApiValues(api: string, filterValue: string): Observable<any> {
+    if (!filterValue)
+      filterValue = '-';
+    const endpoint = this.config.formWriteServiceEndpoint;
+    filterValue = encodeURIComponent(filterValue);
+    const url = `${endpoint}/getvalues/${api}/${filterValue}`;
+    console.log('getApiValues', url);
+
+    return this.http.get(url);
+
+  }
 
 
 }

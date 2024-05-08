@@ -42,12 +42,24 @@
     "isRequired": true
   },
   {
-    "type": "text",
+    "type": "autocomplete",
     "label": "City",
     "name": "city",
     "flex": "third",
     "value": "",
-    "isRequired": true
+    "isRequired": true,
+    "api": "city",
+    "hintStart": "http api values"
+  },
+  {
+    "type": "autocomplete",
+    "label": "Color",
+    "name": "apicolor",
+    "flex": "third",
+    "value": "",
+    "isRequired": true,
+    "api": "color",
+    "hintStart": "http api values"
   },
   {
     "type": "select",
@@ -115,7 +127,7 @@
     ]
   },
   {
-    "type": "multiselect",
+    "type": "multi-select",
     "label": "State list",
     "name": "state_list",
     "flex": "full",

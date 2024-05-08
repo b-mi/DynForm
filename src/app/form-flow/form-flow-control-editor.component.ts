@@ -71,6 +71,8 @@ export class FormFlowControlEditorComponent implements OnInit {
         { label: 'date', key: 'date' },
         { label: 'space', key: 'space' },
         { label: 'button-toggle-multiple', key: 'button-toggle-multiple' },
+        { label: 'autocomplete', key: 'autocomplete' },
+
 
         
 

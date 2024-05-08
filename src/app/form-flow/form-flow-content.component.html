@@ -135,15 +135,27 @@
     </div>
     }
     @case('button-toggle-multiple') {
-      <div class="ff-row ff-space-between">
-        <input matInput readonly="true" [disabled]="formGroup.get(ctl.name)?.disabled" class="width0">
-        <mat-button-toggle-group multiple [formControlName]="ctl.name" [required]="ctl.isRequired" [required]="ctl.isRequired">
-          @for (item of ctl.values; track item) {
-          <mat-button-toggle [value]="item.key">{{ item.label }}</mat-button-toggle>
-          }
-        </mat-button-toggle-group>
-      </div>
-      }
+    <div class="ff-row ff-space-between">
+      <input matInput readonly="true" [disabled]="formGroup.get(ctl.name)?.disabled" class="width0">
+      <mat-button-toggle-group multiple [formControlName]="ctl.name" [required]="ctl.isRequired"
+        [required]="ctl.isRequired">
+        @for (item of ctl.values; track item) {
+        <mat-button-toggle [value]="item.key">{{ item.label }}</mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+    </div>
+    }
+
+    @case('autocomplete') {
+    <div class="ff-row ff-space-between">
+      <input type="text" matInput [formControlName]="ctl.name" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        @for (option of filteredOptions[ctl.name] | async; track option) {
+        <mat-option [value]="option.key">{{option.label}}</mat-option>
+        }
+      </mat-autocomplete>
+    </div>
+    }
 
 
     @default {

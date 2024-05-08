@@ -1,6 +1,8 @@
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { JsonPipe, NgClass } from '@angular/common';
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormsModule } from '@angular/forms';
+import { AsyncPipe } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -11,9 +13,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatChipsModule } from '@angular/material/chips';
-import { Clipboard } from '@angular/cdk/clipboard';
+import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -21,7 +23,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormFlowControlEditorComponent } from './form-flow-control-editor.component';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../config.service';
-import { lastValueFrom } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, lastValueFrom, map, of, startWith, switchMap, tap } from 'rxjs';
 import { FormFlowService } from './form-flow.service';
 import { MatDividerModule } from '@angular/material/divider';
 
@@ -31,19 +33,21 @@ import { MatDividerModule } from '@angular/material/divider';
   providers: [provideNativeDateAdapter()],
   imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule,
     MatCheckboxModule, NgClass, MatButtonModule, MatIconModule, MatSlideToggleModule,
-    MatCardModule, MatDatepickerModule, MatChipsModule, MatButtonToggleModule,
-    MatTooltipModule, JsonPipe, MatSnackBarModule, MatRadioModule,
-    FormFlowControlEditorComponent, FormsModule, OverlayModule, MatDividerModule],
+    MatCardModule, MatDatepickerModule, MatChipsModule, MatButtonToggleModule, AsyncPipe,
+    MatTooltipModule, JsonPipe, MatSnackBarModule, MatRadioModule, MatAutocompleteModule,
+    FormFlowControlEditorComponent, FormsModule, OverlayModule, MatDividerModule,
+    MatAutocompleteModule, AsyncPipe
+
+  ],
   templateUrl: './form-flow-content.component.html',
   styleUrl: './form-flow-content.component.css'
 })
-export class FormFlowContentComponent {
-  
+export class FormFlowContentComponent implements OnInit {
+  filteredOptions: { [key: string]: Observable<any> | undefined } = {};
 
-  private http = inject(HttpClient);
-  private snack = inject(MatSnackBar);
+  // private http = inject(HttpClient);
+  // private snack = inject(MatSnackBar);
 
-  clipboard = inject(Clipboard);
 
   protected config = inject(ConfigService);
 
@@ -62,7 +66,7 @@ export class FormFlowContentComponent {
   isEditOpen = false;
 
 
-  appearance : MatFormFieldAppearance = 'fill'; // fill, outline
+  appearance: MatFormFieldAppearance = 'fill'; // fill, outline
 
   //'fill' | 'outline'
   private _form!: FormGroup;
@@ -101,6 +105,27 @@ export class FormFlowContentComponent {
 
 
   editedControl: any = null;
+
+
+  ngOnInit() {
+    console.log('init', this.controls);
+
+    this.controls.forEach(ctl => {
+      if (ctl.api) {
+        console.log('set', ctl.name);
+
+        this.filteredOptions[ctl.name] = this.formGroup.get(ctl.name)?.valueChanges.pipe(
+          distinctUntilChanged(),
+          debounceTime(1000),
+          startWith(''),
+          tap(value => console.log('tap', value)),
+
+          switchMap(value => this.fservice.getApiValues(ctl.api, value ?? '-'))
+        );
+      }
+    });
+
+  }
 
 
   editCtrl(ctl: any) {
@@ -178,10 +203,6 @@ export class FormFlowContentComponent {
     }
   }
 
-  copyToClipboard() {
-    this.clipboard.copy(JSON.stringify(this.controls, null, 4));
-    this.snack.open('Copied into clipboard', 'OK');
-  }
 
   async saveToFile() {
     await this.fservice.saveToFile(this.formId, this.controls);
