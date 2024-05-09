@@ -212,6 +212,10 @@ export class FormFlowContentComponent implements OnInit {
     this.editMode = false;
   }
 
+  displayFn(item: any): string {
+    return item && item.label ? item.label : '';
+  }
+
 
 
 }

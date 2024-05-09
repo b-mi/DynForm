@@ -43,59 +43,33 @@
   },
   {
     "type": "autocomplete",
-    "label": "City",
-    "name": "city",
+    "label": "States",
+    "name": "state",
     "flex": "third",
     "value": "",
     "isRequired": true,
-    "api": "city",
+    "api": "getstates",
     "hintStart": "http api values"
   },
   {
     "type": "autocomplete",
     "label": "Color",
-    "name": "apicolor",
+    "name": "color",
     "flex": "third",
     "value": "",
     "isRequired": true,
-    "api": "color",
+    "api": "getcolors",
     "hintStart": "http api values"
   },
   {
-    "type": "select",
-    "label": "State",
-    "name": "state",
+    "type": "autocomplete",
+    "label": "City",
+    "name": "city",
     "flex": "third",
-    "values": [
-      {
-        "label": "Alabama",
-        "key": "AL"
-      },
-      {
-        "label": "Alaska",
-        "key": "AK"
-      },
-      {
-        "label": "American Samoa",
-        "key": "AS"
-      },
-      {
-        "label": "Arizona",
-        "key": "AZ"
-      },
-      {
-        "label": "Arkansas",
-        "key": "AR"
-      },
-      {
-        "label": "California",
-        "key": "CA"
-      },
-      {
-        "label": "Colorado",
-        "key": "CO"
-      }
-    ]
+    "value": "",
+    "isRequired": true,
+    "api": "getcities",
+    "hintStart": "http api values"
   },
   {
     "type": "number",

@@ -103,7 +103,7 @@ export class FormFlowService {
       filterValue = '-';
     const endpoint = this.config.formWriteServiceEndpoint;
     filterValue = encodeURIComponent(filterValue);
-    const url = `${endpoint}/getvalues/${api}/${filterValue}`;
+    const url = `${endpoint}/${api}/${filterValue}`;
     console.log('getApiValues', url);
 
     return this.http.get(url);

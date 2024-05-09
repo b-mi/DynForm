@@ -149,9 +149,14 @@
     @case('autocomplete') {
     <div class="ff-row ff-space-between">
       <input type="text" matInput [formControlName]="ctl.name" [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete">
+      @if(formGroup.get(ctl.name)?.value){
+      <button mat-icon-button matSuffix (click)="$event.stopPropagation();formGroup.get(ctl.name)?.setValue(null)">
+        <mat-icon>close</mat-icon>
+      </button>
+      }
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
         @for (option of filteredOptions[ctl.name] | async; track option) {
-        <mat-option [value]="option.key">{{option.label}}</mat-option>
+        <mat-option [value]="option">{{option.label}}</mat-option>
         }
       </mat-autocomplete>
     </div>
