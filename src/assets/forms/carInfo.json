@@ -1,7 +1,7 @@
 [
   {
-    "type": "checkbox",
-    "label": "Check",
+    "type": "slide",
+    "label": "Slide toggle",
     "name": "check1",
     "flex": "quarter",
     "isRequired": true,
@@ -98,7 +98,7 @@
   {
     "type": "button-toggle-multiple",
     "label": "Possible colors",
-    "name": "color",
+    "name": "pcolor",
     "flex": "full",
     "isRequired": true,
     "values": [

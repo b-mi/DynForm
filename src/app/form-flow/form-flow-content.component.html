@@ -111,6 +111,13 @@
     </div>
     }
 
+    @case('slide') {
+      <div class="ff-row">
+        <input matInput readonly="true" [disabled]="formGroup.get(ctl.name)?.disabled">
+        <mat-slide-toggle hideIcon="false" [formControlName]="ctl.name" [required]="ctl.isRequired"></mat-slide-toggle>
+      </div>
+      }
+
     @case('radio') {
     <div class="ff-row">
       <input matInput readonly="true" [disabled]="formGroup.get(ctl.name)?.disabled" class="width0">
