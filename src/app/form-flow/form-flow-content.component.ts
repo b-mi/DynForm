@@ -43,6 +43,7 @@ import { MatDividerModule } from '@angular/material/divider';
   styleUrl: './form-flow-content.component.css'
 })
 export class FormFlowContentComponent implements OnInit {
+
   filteredOptions: { [key: string]: Observable<any> | undefined } = {};
 
   // private http = inject(HttpClient);
@@ -60,10 +61,12 @@ export class FormFlowContentComponent implements OnInit {
     return this._editMode;
   }
   public set editMode(v: boolean) {
+    this.editedControl = null;
     this._editMode = v;
   }
 
   isEditOpen = false;
+  editedControl: any = null;
 
 
   appearance: MatFormFieldAppearance = 'fill'; // fill, outline
@@ -102,11 +105,6 @@ export class FormFlowContentComponent implements OnInit {
     this._formId = v;
   }
 
-
-
-  editedControl: any = null;
-
-
   ngOnInit() {
     console.log('init', this.controls);
 
@@ -118,7 +116,7 @@ export class FormFlowContentComponent implements OnInit {
           distinctUntilChanged(),
           debounceTime(1000),
           startWith(''),
-          tap(value => console.log('tap', value)),
+          // tap(value => console.log('tap', value)),
 
           switchMap(value => this.fservice.getApiValues(ctl.api, value ?? '-'))
         );
@@ -216,6 +214,37 @@ export class FormFlowContentComponent implements OnInit {
     return item && item.label ? item.label : '';
   }
 
+  addNewCtl() {
+    console.log('add0', this.editMode, this.editedControl);
 
+    if (this.editMode && this.editedControl) {
+
+      const index = this.controls.indexOf(this.editedControl);
+      console.log('add', index);
+      if (index > 0) {
+        const newCtl: any = { 
+          type: 'text', 
+          label: 'New Control', 
+          name: 'new_control', 
+          flex: 'quarter',
+          value: null,
+          isRequired: false,
+        };
+        this.controls.splice(index + 1, 0, newCtl);
+        console.log('added', this.controls);
+        
+        this.editedControl = newCtl;
+      }
+    }
+  }
+  removeSelectedCtl() {
+    if (this.editMode && this.editedControl) {
+      const index = this.controls.indexOf(this.editedControl);
+      if (index > -1) {
+        this.editedControl = null;
+        this.controls.splice(index, 1);
+      }
+    }
+  }
 
 }

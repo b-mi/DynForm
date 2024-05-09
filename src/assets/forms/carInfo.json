@@ -59,7 +59,7 @@
     "type": "radio",
     "label": "Sex",
     "name": "sex",
-    "flex": "half",
+    "flex": "quarter",
     "isRequired": true,
     "values": [
       {
@@ -77,7 +77,7 @@
     "type": "button-toggle",
     "label": "Appearance",
     "name": "appearance",
-    "flex": "half",
+    "flex": "three-quarters",
     "isRequired": true,
     "values": [
       {

@@ -2,12 +2,11 @@
 <mat-card-subtitle>
   <div class="ff-row ff-space-between">
     <mat-icon matTooltip="Cancel editing" (click)="cancelEdit()">cancel</mat-icon>
-    <div>Editing form: {{config.formPath}}/{{formId}}.json</div>
-    <div>
-      <!-- <mat-icon matTooltip="Copy to clipboard" (click)="copyToClipboard()">content_copy</mat-icon> -->
-      <mat-icon matTooltip="Save to json file" (click)="saveToFile()">save</mat-icon>
+    <small>Editing form: {{config.formPath}}/{{formId}}.json</small>
+    <mat-icon matTooltip="Save to json file" (click)="saveToFile()">save</mat-icon>
+    <mat-icon matTooltip="Add new control after selected" (click)="addNewCtl()">add</mat-icon>
+    <mat-icon matTooltip="Remove selected control" (click)="removeSelectedCtl()">delete</mat-icon>
 
-    </div>
 
   </div>
 </mat-card-subtitle>
@@ -16,8 +15,7 @@
   @for (ctl of controls; track $index) {
 
   @if(editMode){
-  <div [ngClass]="ctl.flex" class="edit-control" draggable="true" ondragstart="drag(event)" ondrop="drop(event)"
-    ondragover="allowDrop(event)">
+  <div [ngClass]="{'editedControl': ctl === editedControl}" class="{{ctl.flex}} edit-control">
     <div class="fx-col">
       <div class="ff-row ff-space-between">
         <div class="edit-control-text">
@@ -31,7 +29,7 @@
 
       </div>
       <div class="ff-row ff-space-between">
-        <div class="edit-control-text" [ngClass]="'ff-type-' + ctl.type">
+        <div class="edit-control-text ctl-type" [ngClass]="'ff-type-' + ctl.type" (click)="editedControl=ctl">
           {{ctl.type}}
         </div>
 
@@ -112,11 +110,11 @@
     }
 
     @case('slide') {
-      <div class="ff-row">
-        <input matInput readonly="true" [disabled]="formGroup.get(ctl.name)?.disabled">
-        <mat-slide-toggle hideIcon="false" [formControlName]="ctl.name" [required]="ctl.isRequired"></mat-slide-toggle>
-      </div>
-      }
+    <div class="ff-row">
+      <input matInput readonly="true" [disabled]="formGroup.get(ctl.name)?.disabled">
+      <mat-slide-toggle hideIcon="false" [formControlName]="ctl.name" [required]="ctl.isRequired"></mat-slide-toggle>
+    </div>
+    }
 
     @case('radio') {
     <div class="ff-row">

@@ -72,3 +72,11 @@
 .ff-name {
   font-weight: bolder;
 }
+
+.editedControl {
+  background-color: lightblue;
+}
+
+.ctl-type {
+  border-bottom: 2px solid navy;
+}
