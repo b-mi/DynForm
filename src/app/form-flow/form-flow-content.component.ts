@@ -1,7 +1,7 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { JsonPipe, NgClass } from '@angular/common';
-import { Component, Input, OnInit, inject } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormsModule } from '@angular/forms';
+import { Component, ElementRef, Input, OnInit, ViewChild, inject } from '@angular/core';
+import { ReactiveFormsModule, FormGroup, FormsModule, FormControl } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -15,7 +15,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatAutocompleteModule, MatAutocompleteSelectedEvent, MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -23,7 +23,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormFlowControlEditorComponent } from './form-flow-control-editor.component';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../config.service';
-import { Observable, debounceTime, distinctUntilChanged, lastValueFrom, map, of, startWith, switchMap, tap } from 'rxjs';
+import { Observable, count, debounceTime, distinctUntilChanged, filter, lastValueFrom, map, of, startWith, switchMap, tap } from 'rxjs';
 import { FormFlowService } from './form-flow.service';
 import { MatDividerModule } from '@angular/material/divider';
 
@@ -44,6 +44,7 @@ import { MatDividerModule } from '@angular/material/divider';
 })
 export class FormFlowContentComponent implements OnInit {
 
+  @ViewChild('chipInput') chipInput: ElementRef<HTMLInputElement> | undefined;
   filteredOptions: { [key: string]: Observable<any> | undefined } = {};
 
   // private http = inject(HttpClient);
@@ -109,7 +110,7 @@ export class FormFlowContentComponent implements OnInit {
     this._allowEditMode = v;
   }
 
-
+  chipSeparatorKeysCodes: number[] = [ENTER, COMMA];
 
   ngOnInit() {
 
@@ -120,8 +121,8 @@ export class FormFlowContentComponent implements OnInit {
           distinctUntilChanged(),
           debounceTime(1000),
           startWith(''),
-          // tap(value => console.log('tap', value)),
-
+          tap(value => console.log('tap', value, ctl.name)),
+          filter(value => typeof value === 'string'), // disable calling getApiValues after selecting from combo list. It prevets filtering to selected value. for chips and autocomplete
           switchMap(value => this.fservice.getApiValues(ctl.api, value ?? '-'))
         );
       }
@@ -251,6 +252,75 @@ export class FormFlowContentComponent implements OnInit {
   changeAppearance() {
     this.appearance = this.appearance === 'fill' ? 'outline' : 'fill';
   }
+
+  chipRemove(ctl: any, item: any) {
+
+    const arr = <any[]>ctl.values;
+    console.log('chipRemove', ctl, arr, ctl.values);
+
+    const index = arr.indexOf(item);
+    if (index > -1) {
+      arr.splice(index, 1);
+      const fc = this.formGroup.get(ctl.name);
+      fc?.setValue(arr);
+
+    }
+
+  }
+
+  chipAdd(event: MatChipInputEvent, ctl: any) {
+    // disable adding value entered from keyboard
+  }
+
+  chipSelected(event: MatAutocompleteSelectedEvent, ctl: any) {
+
+    if (!ctl.values)
+      ctl.values = [];
+
+    ctl.values.push(event.option.value);
+
+    const fc = this.formGroup.get(ctl.name) as FormControl;
+    fc.setValue(ctl.values);
+
+    console.log('chipSelected', ctl.values);
+
+  }
+
+
+
+
+  openApiList(trigger: MatAutocompleteTrigger, name: string) {
+
+    if (trigger.panelOpen) {
+      trigger.closePanel()
+    } else {
+      trigger.openPanel()
+    }
+  }
+
+  chipClearApiInput(ctl: any, inp: HTMLInputElement) {
+    inp.value = '';
+    const event = new Event('input', {
+      bubbles: true,
+      cancelable: true,
+    });
+    inp.dispatchEvent(event);
+
+    const fc = this.formGroup.get(ctl.name) as FormControl;
+    fc.setValue(ctl.values);
+
+  }
+
+  acClearApiInput(ctl: any, inp: HTMLInputElement) {
+    inp.value = '';
+    const event = new Event('input', {
+      bubbles: true,
+      cancelable: true,
+    });
+    inp.dispatchEvent(event);
+
+  }
+
 
 
 }

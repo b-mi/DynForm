@@ -62,6 +62,16 @@
     "hintStart": "http api values"
   },
   {
+    "type": "chips",
+    "label": "Many colors",
+    "name": "many_colors",
+    "flex": "full",
+    "value": "",
+    "isRequired": true,
+    "api": "getcolors",
+    "hintStart": "http api values"
+  },  
+  {
     "type": "autocomplete",
     "label": "City",
     "name": "city",

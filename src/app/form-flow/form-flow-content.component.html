@@ -2,13 +2,13 @@
 <mat-card-subtitle>
   <div class="ff-row ff-space-between">
     <mat-slide-toggle [(ngModel)]="editMode">Edit mode</mat-slide-toggle>
-    
+
     @if(editMode){
-      <mat-icon matTooltip="Save to json file" (click)="saveToFile()">save</mat-icon>
-      <mat-icon matTooltip="Add new control after selected" (click)="addNewCtl()">add</mat-icon>
-      <mat-icon matTooltip="Remove selected control" (click)="removeSelectedCtl()">delete</mat-icon>
+    <mat-icon matTooltip="Save to json file" (click)="saveToFile()">save</mat-icon>
+    <mat-icon matTooltip="Add new control after selected" (click)="addNewCtl()">add</mat-icon>
+    <mat-icon matTooltip="Remove selected control" (click)="removeSelectedCtl()">delete</mat-icon>
     }
-    <mat-slide-toggle (toggleChange)="changeAppearance()" >{{appearance}}</mat-slide-toggle>
+    <mat-slide-toggle (toggleChange)="changeAppearance()">{{appearance}}</mat-slide-toggle>
 
   </div>
   <mat-card-subtitle>
@@ -159,18 +159,54 @@
 
     @case('autocomplete') {
     <div class="ff-row ff-space-between">
-      <input type="text" matInput [formControlName]="ctl.name" [matAutocomplete]="auto">
+      <input #acInput type="text" matInput [formControlName]="ctl.name" 
+      #trigger="matAutocompleteTrigger" [matAutocomplete]="auto">
       @if(formGroup.get(ctl.name)?.value){
-      <button mat-icon-button matSuffix (click)="$event.stopPropagation();formGroup.get(ctl.name)?.setValue(null)">
+      <button mat-icon-button matSuffix (click)="$event.stopPropagation();acClearApiInput(ctl, acInput)">
         <mat-icon>close</mat-icon>
       </button>
       }
+      <button mat-icon-button matSuffix (click)="openApiList(trigger, ctl.name); $event.stopPropagation()">
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
         @for (option of filteredOptions[ctl.name] | async; track option) {
         <mat-option [value]="option">{{option.label}}</mat-option>
         }
       </mat-autocomplete>
     </div>
+    }
+
+    @case('chips'){
+    <mat-chip-grid #chipGrid>
+      @for (item of ctl.values; track item) {
+      <mat-chip-row (removed)="chipRemove(ctl, item)">
+        {{item.label}}
+        <button matChipRemove>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      }
+    </mat-chip-grid>
+    <div class="ff-row ff-space-between">
+      <input #chipInput [formControlName]="ctl.name" #trigger="matAutocompleteTrigger" [matChipInputFor]="chipGrid"
+        [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="chipSeparatorKeysCodes"
+        (matChipInputTokenEnd)="chipAdd($event, ctl)" />
+      @if(chipInput.value){
+      <button mat-icon-button matSuffix (click)="$event.stopPropagation();chipClearApiInput(ctl, chipInput)">
+        <mat-icon>close</mat-icon>
+      </button>
+      }
+
+      <button mat-icon-button matSuffix (click)="openApiList(trigger, ctl.name); $event.stopPropagation()">
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+    </div>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="chipSelected($event, ctl);">
+      @for (option of filteredOptions[ctl.name] | async; track option) {
+      <mat-option [value]="option">{{option.label}}</mat-option>
+      }
+    </mat-autocomplete>
     }
 
 
