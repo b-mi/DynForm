@@ -35,18 +35,29 @@ export class FormSampleComponent implements OnInit {
   private fservice = inject(FormFlowService);
   formGroup!: FormGroup;
 
+  // if edit mode is allower. Need web api for writing form definitions to file system
+  // acoording to config.json apiFullFormPath
+  allowEditMode = true;
+
   constructor() {
   }
   ngOnInit() {
     this.loadForms();
   }
 
+  formIdShipping: string = 'shipingInf';
+  formIdCarInfo: string = 'carInfo';
 
   async loadForms() {
-    this.ctlsShipping = await this.fservice.loadFormDef('shipingInf');
-    this.ctlsCarInf = await this.fservice.loadFormDef('carInfo');
+    // load form definitions from json file in assets/ and configured assetsFormDir in config.json
+    this.ctlsShipping = await this.fservice.loadFormDef(this.formIdShipping);
+    this.ctlsCarInf = await this.fservice.loadFormDef(this.formIdCarInfo);
 
-    const fg = this.fservice.createFormGroup(this.ctlsShipping);
+    // create empty fromGroup
+    const fg = new FormGroup({}); // this.fb.group({});
+    
+    // fill formGroup
+    this.fservice.appendToFormGroup(fg, this.ctlsShipping);
     this.fservice.appendToFormGroup(fg, this.ctlsCarInf);
     this.formGroup = fg;
   }

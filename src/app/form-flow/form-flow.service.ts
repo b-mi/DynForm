@@ -81,19 +81,16 @@ export class FormFlowService {
 
   async loadFormDef(formId: string) {
 
-    const formPath = this.config.formPath;
-    const assetIdx = formPath.indexOf('/assets/');
-    const fn = formPath.substring(assetIdx) + '/' + formId + '.json';
-
+    const assetsFormDir = this.config.assetsFormDir;
+    const fn = `./assets/${assetsFormDir}/${formId}.json`;
     const controls = <any[]>await lastValueFrom(this.http.get(fn));
-    // const formPath = `${this.config.formPath}/${this.formId}.json`;
     return controls;
   }
 
   async saveToFile(formId: string, controls: any[]) {
     const endpoint = this.config.formWriteServiceEndpoint;
-    const formPath = this.config.formPath;
-    const response = await lastValueFrom(this.http.put(`${endpoint}/save-json/${formId}`, { formPath: formPath, data: controls }));
+    const apiFullFormPath = this.config.apiFullFormPath;
+    const response = await lastValueFrom(this.http.put(`${endpoint}/save-json/${formId}`, { apiFullFormPath: apiFullFormPath, data: controls }));
     console.log(`put ${formId}`, response);
 
   }

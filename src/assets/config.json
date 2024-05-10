@@ -1,4 +1,5 @@
 {
 	"formWriteServiceEndpoint": "http://localhost:3000",
-	"formPath": "h:/Data/repos/ng/DynForm/src/assets/forms"
+	"apiFullFormPath": "h:/Data/repos/ng/DynForm/src/assets/forms",
+	"assetsFormDir" : "forms"
 }

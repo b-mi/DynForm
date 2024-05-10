@@ -11,8 +11,8 @@
         <mat-card-subtitle>Shipping Information</mat-card-subtitle>
       </mat-card-header>
 
-      <app-form-flow-content [formGroup]="formGroup" formId="shipingInf" 
-      [controls]="ctlsShipping" [allowEditMode]="true" />
+      <app-form-flow-content [formGroup]="formGroup" [formId]="formIdShipping" 
+      [controls]="ctlsShipping" [allowEditMode]="allowEditMode" />
 
     </mat-card-content>
   </mat-card>
@@ -24,8 +24,8 @@
         <mat-card-subtitle>Car info</mat-card-subtitle>
       </mat-card-header>
 
-      <app-form-flow-content [formGroup]="formGroup" formId="carInfo" 
-      [allowEditMode]="true" [controls]="ctlsCarInf"  />
+      <app-form-flow-content [formGroup]="formGroup" [formId]="formIdCarInfo" 
+      [controls]="ctlsCarInf" [allowEditMode]="allowEditMode" />
 
     </mat-card-content>
   </mat-card>
