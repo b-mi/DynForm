@@ -2,14 +2,18 @@
 <mat-card-subtitle>
   <div class="ff-row ff-space-between">
     <mat-slide-toggle [(ngModel)]="editMode">Edit mode</mat-slide-toggle>
+    
     @if(editMode){
-    <mat-icon matTooltip="Save to json file" (click)="saveToFile()">save</mat-icon>
-    <mat-icon matTooltip="Add new control after selected" (click)="addNewCtl()">add</mat-icon>
-    <mat-icon matTooltip="Remove selected control" (click)="removeSelectedCtl()">delete</mat-icon>
+      <mat-icon matTooltip="Save to json file" (click)="saveToFile()">save</mat-icon>
+      <mat-icon matTooltip="Add new control after selected" (click)="addNewCtl()">add</mat-icon>
+      <mat-icon matTooltip="Remove selected control" (click)="removeSelectedCtl()">delete</mat-icon>
     }
-    <small>Editing form: {{config.apiFullFormPath}}/{{formId}}.json</small>
+    <mat-slide-toggle (toggleChange)="changeAppearance()" >{{appearance}}</mat-slide-toggle>
 
   </div>
+  <mat-card-subtitle>
+    <small>Editing form: {{config.apiFullFormPath}}/{{formId}}.json</small>
+  </mat-card-subtitle>
 </mat-card-subtitle>
 }
 <div class="ff-container" [formGroup]="formGroup">

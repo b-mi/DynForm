@@ -210,7 +210,7 @@ export class FormFlowContentComponent implements OnInit {
     await this.fservice.saveToFile(this.formId, this.controls);
   }
 
-  
+
   displayFn(item: any): string {
     return item && item.label ? item.label : '';
   }
@@ -247,5 +247,10 @@ export class FormFlowContentComponent implements OnInit {
       }
     }
   }
+
+  changeAppearance() {
+    this.appearance = this.appearance === 'fill' ? 'outline' : 'fill';
+  }
+
 
 }

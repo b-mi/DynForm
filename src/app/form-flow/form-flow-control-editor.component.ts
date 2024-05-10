@@ -73,11 +73,7 @@ export class FormFlowControlEditorComponent implements OnInit {
         { label: 'button-toggle-multiple', key: 'button-toggle-multiple' },
         { label: 'autocomplete', key: 'autocomplete' },
         { label: 'slide', key: 'slide' },
-
-
-
-        
-
+        { label: 'chips', key: 'chips' },
       ],
     },
     {
