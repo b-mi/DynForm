@@ -54,24 +54,17 @@ export class FormFlowContentComponent implements OnInit {
 
   private fservice = inject(FormFlowService);
 
-  private _editMode: boolean = false;
+  protected editMode: boolean = false;
 
-  @Input()
-  public get editMode(): boolean {
-    return this._editMode;
-  }
-  public set editMode(v: boolean) {
-    this.editedControl = null;
-    this._editMode = v;
-  }
+  // if property editor is open
+  isEditorOpened = false;
 
-  isEditOpen = false;
+  // actual control in edit mode
   editedControl: any = null;
-
 
   appearance: MatFormFieldAppearance = 'fill'; // fill, outline
 
-  //'fill' | 'outline'
+  // formGroup
   private _form!: FormGroup;
   public get formGroup(): FormGroup {
     return this._form;
@@ -83,7 +76,7 @@ export class FormFlowContentComponent implements OnInit {
   }
 
 
-
+  // control list
   private _controls!: any[];
   public get controls(): any[] {
     return this._controls;
@@ -94,7 +87,7 @@ export class FormFlowContentComponent implements OnInit {
   }
 
 
-
+  // form identifier, part of file name
   private _formId!: string;
   @Input()
   public get formId(): string {
@@ -105,12 +98,23 @@ export class FormFlowContentComponent implements OnInit {
     this._formId = v;
   }
 
+
+
+  private _allowEditMode: boolean = false;
+  @Input()
+  public get allowEditMode(): boolean {
+    return this._allowEditMode;
+  }
+  public set allowEditMode(v: boolean) {
+    this._allowEditMode = v;
+  }
+
+
+
   ngOnInit() {
-    console.log('init', this.controls);
 
     this.controls.forEach(ctl => {
       if (ctl.api) {
-        console.log('set', ctl.name);
 
         this.filteredOptions[ctl.name] = this.formGroup.get(ctl.name)?.valueChanges.pipe(
           distinctUntilChanged(),
@@ -127,9 +131,9 @@ export class FormFlowContentComponent implements OnInit {
 
 
   editCtrl(ctl: any) {
-    if (!this.isEditOpen) {
+    if (!this.isEditorOpened) {
       this.editedControl = ctl;
-      this.isEditOpen = true;
+      this.isEditorOpened = true;
     }
   }
 
@@ -192,7 +196,7 @@ export class FormFlowContentComponent implements OnInit {
   }
 
   closeEditOverlay(event: any) {
-    this.isEditOpen = false;
+    this.isEditorOpened = false;
     if (event.doSave) {
       const idx = this.controls.findIndex((i) => i.name === event.data.name);
       this.controls[idx] = event.data;
@@ -206,10 +210,7 @@ export class FormFlowContentComponent implements OnInit {
     await this.fservice.saveToFile(this.formId, this.controls);
   }
 
-  cancelEdit() {
-    this.editMode = false;
-  }
-
+  
   displayFn(item: any): string {
     return item && item.label ? item.label : '';
   }
@@ -222,17 +223,17 @@ export class FormFlowContentComponent implements OnInit {
       const index = this.controls.indexOf(this.editedControl);
       console.log('add', index);
       if (index > 0) {
-        const newCtl: any = { 
-          type: 'text', 
-          label: 'New Control', 
-          name: 'new_control', 
+        const newCtl: any = {
+          type: 'text',
+          label: 'New Control',
+          name: 'new_control',
           flex: 'quarter',
           value: null,
           isRequired: false,
         };
         this.controls.splice(index + 1, 0, newCtl);
         console.log('added', this.controls);
-        
+
         this.editedControl = newCtl;
       }
     }

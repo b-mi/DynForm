@@ -34,8 +34,6 @@ export class FormSampleComponent implements OnInit {
   private http = inject(HttpClient);
   private fservice = inject(FormFlowService);
   formGroup!: FormGroup;
-  public editMode: boolean = false;
-  editedControl: any;
 
   constructor() {
   }

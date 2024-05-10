@@ -1,12 +1,13 @@
-@if(editMode){
+@if(allowEditMode){
 <mat-card-subtitle>
   <div class="ff-row ff-space-between">
-    <mat-icon matTooltip="Cancel editing" (click)="cancelEdit()">cancel</mat-icon>
-    <small>Editing form: {{config.formPath}}/{{formId}}.json</small>
+    <mat-slide-toggle [(ngModel)]="editMode">Edit mode</mat-slide-toggle>
+    @if(editMode){
     <mat-icon matTooltip="Save to json file" (click)="saveToFile()">save</mat-icon>
     <mat-icon matTooltip="Add new control after selected" (click)="addNewCtl()">add</mat-icon>
     <mat-icon matTooltip="Remove selected control" (click)="removeSelectedCtl()">delete</mat-icon>
-
+    }
+    <small>Editing form: {{config.formPath}}/{{formId}}.json</small>
 
   </div>
 </mat-card-subtitle>
@@ -38,7 +39,8 @@
           edit
         </mat-icon>
 
-        <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isEditOpen">
+        <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
+          [cdkConnectedOverlayOpen]="isEditorOpened">
           @if(editedControl && ctl === editedControl){
           <div class="editor">
             <app-form-flow-control-editor [controlData]="editedControl"

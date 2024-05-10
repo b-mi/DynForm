@@ -11,8 +11,8 @@
         <mat-card-subtitle>Shipping Information</mat-card-subtitle>
       </mat-card-header>
 
-      <app-form-flow-content [formGroup]="formGroup" formId="shipingInf" [controls]="ctlsShipping"
-        [editMode]="editMode" />
+      <app-form-flow-content [formGroup]="formGroup" formId="shipingInf" 
+      [controls]="ctlsShipping" [allowEditMode]="true" />
 
     </mat-card-content>
   </mat-card>
@@ -24,7 +24,8 @@
         <mat-card-subtitle>Car info</mat-card-subtitle>
       </mat-card-header>
 
-      <app-form-flow-content [formGroup]="formGroup" formId="carInfo" [controls]="ctlsCarInf" [editMode]="editMode" />
+      <app-form-flow-content [formGroup]="formGroup" formId="carInfo" 
+      [allowEditMode]="true" [controls]="ctlsCarInf"  />
 
     </mat-card-content>
   </mat-card>
@@ -32,16 +33,10 @@
   <div class="ff-row ff-space-around">
     <button mat-flat-button (click)="enable(true)">Enable</button>
     <button mat-raised-button (click)="enable(false)">Disable</button>
-
-
-    <mat-checkbox [(ngModel)]="editMode" [ngModelOptions]="{standalone: true}">Edit mode</mat-checkbox>
   </div>
 
 </form>
 
-<pre>
-  {{editMode | json}}
-</pre>
 
 <pre>
   {{formGroup.value | json}}
