@@ -1,4 +1,4 @@
-# DynForm
+# ng-dyn-forms
 Testing angular material dynamic forms, angular 17
 
 
