@@ -121,13 +121,8 @@ export class FormFlowContentComponent implements OnInit {
           distinctUntilChanged(),
           debounceTime(1000),
           startWith(''),
-          tap(value => console.log('tap', value, ctl)),
-          filter(value => {
-            const rtn = (typeof value === 'string' || !value);
-            console.log('filter', rtn, rtn ? 'VOLA sa api' : 'NEVOLA sa api', value);
-
-            return rtn;
-          }), // disable calling getApiValues after selecting from combo list. It prevets filtering to selected value. for chips and autocomplete
+          // tap(value => console.log('tap', value, ctl)),
+          filter(value => typeof value === 'string' || !value), // disable calling getApiValues after selecting from combo list. It prevets filtering to selected value. for chips and autocomplete
           switchMap(value => {
             let strFlt = value;
             if (!value)
@@ -228,12 +223,9 @@ export class FormFlowContentComponent implements OnInit {
   }
 
   addNewCtl() {
-    console.log('add0', this.editMode, this.editedControl);
-
     if (this.editMode && this.editedControl) {
 
       const index = this.controls.indexOf(this.editedControl);
-      console.log('add', index);
       if (index > 0) {
         const newCtl: any = {
           type: 'text',
@@ -244,7 +236,6 @@ export class FormFlowContentComponent implements OnInit {
           isRequired: false,
         };
         this.controls.splice(index + 1, 0, newCtl);
-        console.log('added', this.controls);
 
         this.editedControl = newCtl;
       }
@@ -267,8 +258,6 @@ export class FormFlowContentComponent implements OnInit {
   chipRemove(ctl: any, item: any) {
 
     const arr = <any[]>ctl.values;
-    console.log('chipRemove', ctl, arr, ctl.values);
-
     const index = arr.indexOf(item);
     if (index > -1) {
       arr.splice(index, 1);
@@ -285,23 +274,12 @@ export class FormFlowContentComponent implements OnInit {
 
   chipSelected(event: MatAutocompleteSelectedEvent, ctl: any, inp: HTMLInputElement) {
 
-
-
-    // console.log('chipSelected', event, ctl, inp);
-
     if (!ctl.values)
       ctl.values = [];
-
     ctl.values.push(event.option.value);
-
     inp.value = '';
-
     const fc = this.formGroup.get(ctl.name) as FormControl;
     fc.setValue(ctl.values);
-    // fc.setValue(ctl.values);
-
-    console.log('chipSelected', ctl.values);
-
   }
 
 
@@ -319,7 +297,7 @@ export class FormFlowContentComponent implements OnInit {
   chipClearApiInput(ctl: any, inp: HTMLInputElement, trigger: MatAutocompleteTrigger, chipGrid: MatChipGrid) {
     // nefunguje to dobre
     inp.value = '';
-   //const fc = this.formGroup.get(ctl.name) as FormControl;
+    //const fc = this.formGroup.get(ctl.name) as FormControl;
     chipGrid.valueChange.emit('');
     //chipGrid.valueChange.next('');
   }
@@ -332,17 +310,13 @@ export class FormFlowContentComponent implements OnInit {
   }
 
   chipLostFocus(ctl: any, inp: HTMLInputElement) {
-    console.log('chipLostFocus', ctl.values);
-
     inp.value = '';
     const fc = this.formGroup.get(ctl.name) as FormControl;
     fc.setValue(ctl.values);
   }
 
   acLostFocus(ctl: any, inp: HTMLInputElement) {
-    console.log('acLostFocus', inp.value);
     const fc = this.formGroup.get(ctl.name) as FormControl;
-
     if (typeof fc.value === 'string') {
       fc.setValue(null);
     }

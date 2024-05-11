@@ -166,9 +166,9 @@
         <mat-icon>close</mat-icon>
       </button>
       }
-      <button mat-icon-button matSuffix (click)="openApiList(trigger, ctl.name); $event.stopPropagation()">
+      <!-- <button mat-icon-button matSuffix (click)="openApiList(trigger, ctl.name); $event.stopPropagation()">
         <mat-icon>arrow_drop_down</mat-icon>
-      </button>
+      </button> -->
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
         @for (option of filteredOptions[ctl.name] | async; track option) {
         <mat-option [value]="option">{{option.label}}</mat-option>
@@ -199,9 +199,9 @@
       </button>
       } -->
 
-      <button mat-icon-button matSuffix (click)="openApiList(trigger, ctl.name); $event.stopPropagation()">
+      <!-- <button mat-icon-button matSuffix (click)="openApiList(trigger, ctl.name); $event.stopPropagation()">
         <mat-icon>arrow_drop_down</mat-icon>
-      </button>
+      </button> -->
     </div>
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="chipSelected($event, ctl, chipInput);">
       @for (option of filteredOptions[ctl.name] | async; track option) {
