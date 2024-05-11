@@ -23,4 +23,4 @@ Testing angular material dynamic forms, angular 17
 ![alt text](images/code.png)
 ![alt text](images/codehtml.png)
 
-Related with [dyn-form-server](https://github.com/b-mi/ng-dyn-form-server)
+Related with [ng-dyn-form-server](https://github.com/b-mi/ng-dyn-form-server)
