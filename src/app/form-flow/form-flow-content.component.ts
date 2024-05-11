@@ -124,14 +124,14 @@ export class FormFlowContentComponent implements OnInit {
           tap(value => console.log('tap', value, ctl)),
           filter(value => {
             const rtn = (typeof value === 'string' || !value);
-            console.log('filter', rtn, value);
+            console.log('filter', rtn, rtn ? 'VOLA sa api' : 'NEVOLA sa api', value);
 
             return rtn;
           }), // disable calling getApiValues after selecting from combo list. It prevets filtering to selected value. for chips and autocomplete
           switchMap(value => {
-            const strFlt = value ?? '-';
-            ctl.lastFilter = strFlt;
-            console.log('switchMap', ctl, ctl.lastFilter);
+            let strFlt = value;
+            if (!value)
+              strFlt = '-';
 
             return this.fservice.getApiValues(ctl.api, strFlt);
           })
@@ -317,10 +317,11 @@ export class FormFlowContentComponent implements OnInit {
   }
 
   chipClearApiInput(ctl: any, inp: HTMLInputElement, trigger: MatAutocompleteTrigger, chipGrid: MatChipGrid) {
+    // nefunguje to dobre
     inp.value = '';
-    // const fc = this.formGroup.get(ctl.name) as FormControl;
-    //    chipGrid.valueChange.emit([]);
-
+   //const fc = this.formGroup.get(ctl.name) as FormControl;
+    chipGrid.valueChange.emit('');
+    //chipGrid.valueChange.next('');
   }
 
   acClearApiInput(ctl: any, inp: HTMLInputElement) {

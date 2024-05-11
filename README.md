@@ -8,6 +8,7 @@ Testing angular material dynamic forms, angular 17
 * Responsive
 * Support form validators and hints
 * Support for text, textarea, divider, space, select, number, checkbox, date, radio group
+* Support for autocomplete and chips with autocomplete with http get api source
 * Support for widths full, half, thirds, quarters, max 1 up to 4 columns with automatic wrap
 * Support for moving controls in editing mode
 

@@ -104,12 +104,12 @@
     "isRequired": true,
     "api": "getcolors",
     "hintStart": "http api values"
-  }, 
+  },
   {
     "type": "autocomplete",
     "label": "City",
     "name": "city",
-    "flex": "third",
+    "flex": "quarter",
     "value": "",
     "isRequired": true,
     "api": "getcities",
@@ -119,7 +119,7 @@
     "type": "button-toggle-multiple",
     "label": "Possible colors",
     "name": "pcolor",
-    "flex": "full",
+    "flex": "three-quarters",
     "isRequired": true,
     "values": [
       {
@@ -153,11 +153,8 @@
       {
         "label": "Magenta",
         "key": "M"
-      },
-      {
-        "label": "Lime",
-        "key": "L"
       }
+
     ],
     "value": [
       "BL",

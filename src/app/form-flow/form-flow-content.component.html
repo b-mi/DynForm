@@ -193,11 +193,11 @@
         [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="chipSeparatorKeysCodes"
         (matChipInputTokenEnd)="chipAdd($event, ctl)" (blur)="chipLostFocus(ctl, chipInput)" 
         />
-      @if(ctl.lastFilter === '-'){
+      <!-- @if(ctl.lastFilter !== '-'){
       <button mat-icon-button matSuffix (click)="chipClearApiInput(ctl, chipInput, trigger, chipGrid)">
         <mat-icon>close</mat-icon>
       </button>
-      }
+      } -->
 
       <button mat-icon-button matSuffix (click)="openApiList(trigger, ctl.name); $event.stopPropagation()">
         <mat-icon>arrow_drop_down</mat-icon>

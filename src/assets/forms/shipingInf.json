@@ -61,8 +61,6 @@
     "api": "getcolors",
     "hintStart": "http api values"
   },
- 
-
   {
     "type": "number",
     "label": "Postal Code",
@@ -76,7 +74,7 @@
     "type": "select",
     "label": "Shipping",
     "name": "shipping",
-    "flex": "two-thirds",
+    "flex": "half",
     "values": [
       {
         "label": "Free Shipping",
@@ -96,7 +94,7 @@
     "type": "multi-select",
     "label": "State list",
     "name": "state_list",
-    "flex": "full",
+    "flex": "half",
     "values": [
       {
         "label": "Alabama",
