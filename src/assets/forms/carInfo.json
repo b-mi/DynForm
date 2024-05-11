@@ -106,16 +106,6 @@
     "hintStart": "http api values"
   },
   {
-    "type": "autocomplete",
-    "label": "City",
-    "name": "city",
-    "flex": "quarter",
-    "value": "",
-    "isRequired": true,
-    "api": "getcities",
-    "hintStart": "http api values"
-  },
-  {
     "type": "button-toggle-multiple",
     "label": "Possible colors",
     "name": "pcolor",
@@ -154,12 +144,21 @@
         "label": "Magenta",
         "key": "M"
       }
-
     ],
     "value": [
       "BL",
       "O",
       "M"
     ]
+  },
+  {
+    "type": "autocomplete",
+    "label": "City",
+    "name": "city",
+    "flex": "quarter",
+    "value": "",
+    "isRequired": true,
+    "api": "getcities",
+    "hintStart": "http api values"
   }
 ]
