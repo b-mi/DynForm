@@ -160,7 +160,7 @@
     @case('autocomplete') {
     <div class="ff-row ff-space-between">
       <input #acInput type="text" matInput [formControlName]="ctl.name" 
-      #trigger="matAutocompleteTrigger" [matAutocomplete]="auto">
+      #trigger="matAutocompleteTrigger" [matAutocomplete]="auto" (blur)="acLostFocus(ctl, acInput)">
       @if(formGroup.get(ctl.name)?.value){
       <button mat-icon-button matSuffix (click)="$event.stopPropagation();acClearApiInput(ctl, acInput)">
         <mat-icon>close</mat-icon>
@@ -178,7 +178,7 @@
     }
 
     @case('chips'){
-    <mat-chip-grid #chipGrid>
+    <mat-chip-grid #chipGrid [disabled]="formGroup.get(ctl.name)!.disabled">
       @for (item of ctl.values; track item) {
       <mat-chip-row (removed)="chipRemove(ctl, item)">
         {{item.label}}
@@ -191,9 +191,10 @@
     <div class="ff-row ff-space-between">
       <input #chipInput [formControlName]="ctl.name" #trigger="matAutocompleteTrigger" [matChipInputFor]="chipGrid"
         [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="chipSeparatorKeysCodes"
-        (matChipInputTokenEnd)="chipAdd($event, ctl)" />
-      @if(chipInput.value){
-      <button mat-icon-button matSuffix (click)="$event.stopPropagation();chipClearApiInput(ctl, chipInput)">
+        (matChipInputTokenEnd)="chipAdd($event, ctl)" (blur)="chipLostFocus(ctl, chipInput)" 
+        />
+      @if(ctl.lastFilter === '-'){
+      <button mat-icon-button matSuffix (click)="chipClearApiInput(ctl, chipInput, trigger, chipGrid)">
         <mat-icon>close</mat-icon>
       </button>
       }
@@ -202,7 +203,7 @@
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
     </div>
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="chipSelected($event, ctl);">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="chipSelected($event, ctl, chipInput);">
       @for (option of filteredOptions[ctl.name] | async; track option) {
       <mat-option [value]="option">{{option.label}}</mat-option>
       }

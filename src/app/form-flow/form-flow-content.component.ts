@@ -13,7 +13,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
+import { MatChipGrid, MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent, MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -121,9 +121,20 @@ export class FormFlowContentComponent implements OnInit {
           distinctUntilChanged(),
           debounceTime(1000),
           startWith(''),
-          tap(value => console.log('tap', value, ctl.name)),
-          filter(value => typeof value === 'string'), // disable calling getApiValues after selecting from combo list. It prevets filtering to selected value. for chips and autocomplete
-          switchMap(value => this.fservice.getApiValues(ctl.api, value ?? '-'))
+          tap(value => console.log('tap', value, ctl)),
+          filter(value => {
+            const rtn = (typeof value === 'string' || !value);
+            console.log('filter', rtn, value);
+
+            return rtn;
+          }), // disable calling getApiValues after selecting from combo list. It prevets filtering to selected value. for chips and autocomplete
+          switchMap(value => {
+            const strFlt = value ?? '-';
+            ctl.lastFilter = strFlt;
+            console.log('switchMap', ctl, ctl.lastFilter);
+
+            return this.fservice.getApiValues(ctl.api, strFlt);
+          })
         );
       }
     });
@@ -272,15 +283,22 @@ export class FormFlowContentComponent implements OnInit {
     // disable adding value entered from keyboard
   }
 
-  chipSelected(event: MatAutocompleteSelectedEvent, ctl: any) {
+  chipSelected(event: MatAutocompleteSelectedEvent, ctl: any, inp: HTMLInputElement) {
+
+
+
+    // console.log('chipSelected', event, ctl, inp);
 
     if (!ctl.values)
       ctl.values = [];
 
     ctl.values.push(event.option.value);
 
+    inp.value = '';
+
     const fc = this.formGroup.get(ctl.name) as FormControl;
     fc.setValue(ctl.values);
+    // fc.setValue(ctl.values);
 
     console.log('chipSelected', ctl.values);
 
@@ -298,27 +316,35 @@ export class FormFlowContentComponent implements OnInit {
     }
   }
 
-  chipClearApiInput(ctl: any, inp: HTMLInputElement) {
+  chipClearApiInput(ctl: any, inp: HTMLInputElement, trigger: MatAutocompleteTrigger, chipGrid: MatChipGrid) {
     inp.value = '';
-    const event = new Event('input', {
-      bubbles: true,
-      cancelable: true,
-    });
-    inp.dispatchEvent(event);
-
-    const fc = this.formGroup.get(ctl.name) as FormControl;
-    fc.setValue(ctl.values);
+    // const fc = this.formGroup.get(ctl.name) as FormControl;
+    //    chipGrid.valueChange.emit([]);
 
   }
 
   acClearApiInput(ctl: any, inp: HTMLInputElement) {
     inp.value = '';
-    const event = new Event('input', {
-      bubbles: true,
-      cancelable: true,
-    });
-    inp.dispatchEvent(event);
+    const fc = this.formGroup.get(ctl.name) as FormControl;
+    fc.setValue(null);
 
+  }
+
+  chipLostFocus(ctl: any, inp: HTMLInputElement) {
+    console.log('chipLostFocus', ctl.values);
+
+    inp.value = '';
+    const fc = this.formGroup.get(ctl.name) as FormControl;
+    fc.setValue(ctl.values);
+  }
+
+  acLostFocus(ctl: any, inp: HTMLInputElement) {
+    console.log('acLostFocus', inp.value);
+    const fc = this.formGroup.get(ctl.name) as FormControl;
+
+    if (typeof fc.value === 'string') {
+      fc.setValue(null);
+    }
   }
 
 

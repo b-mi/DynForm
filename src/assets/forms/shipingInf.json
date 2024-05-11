@@ -61,26 +61,8 @@
     "api": "getcolors",
     "hintStart": "http api values"
   },
-  {
-    "type": "chips",
-    "label": "Many colors",
-    "name": "many_colors",
-    "flex": "full",
-    "value": "",
-    "isRequired": true,
-    "api": "getcolors",
-    "hintStart": "http api values"
-  },  
-  {
-    "type": "autocomplete",
-    "label": "City",
-    "name": "city",
-    "flex": "third",
-    "value": "",
-    "isRequired": true,
-    "api": "getcities",
-    "hintStart": "http api values"
-  },
+ 
+
   {
     "type": "number",
     "label": "Postal Code",
