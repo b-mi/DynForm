@@ -19,7 +19,11 @@ Testing angular material dynamic forms, angular 17
 ## Editing mode
 ![alt text](images/f2.png)
 
-Related with [dyn-form-server](https://github.com/b-mi/dyn-form-server)
+## Sample usage
+![alt text](images/code.png)
+![alt text](images/codehtml.png)
+
+Related with [dyn-form-server](https://github.com/b-mi/ng-dyn-form-server)
 
 ## Material typography cheat list (not working now)
 ![alt text](images/typomat.png)
