@@ -14,6 +14,8 @@ export class TypographyComponent {
 
 
     "mat-headline-1",
+    "headline-1",
+    "headline-2",
     "mat-headline-2",
     "mat-headline-3",
     "mat-headline-4",
