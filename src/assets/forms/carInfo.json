@@ -91,6 +91,14 @@
     ]
   },
   {
+    "type": "divider",
+    "label": "",
+    "name": "",
+    "flex": "half",
+    "value": null,
+    "isRequired": false
+  },
+  {
     "type": "chips",
     "label": "Many colors",
     "name": "many_colors",
