@@ -30,33 +30,26 @@
     "type": "text",
     "label": "Car 2",
     "name": "car_name2",
-    "flex": "quarter",
+    "flex": "third",
     "value": ""
   },
   {
     "type": "space",
-    "flex": "quarter",
+    "flex": "third",
     "isNonMatFormField": true
   },
   {
     "type": "number",
     "label": "Age 2",
     "name": "car_age2",
-    "flex": "quarter",
+    "flex": "third",
     "value": 0
-  },
-  {
-    "type": "checkbox",
-    "label": "Check 2",
-    "name": "check2",
-    "flex": "quarter",
-    "isRequired": true
   },
   {
     "type": "radio",
     "label": "Sex",
     "name": "sex",
-    "flex": "quarter",
+    "flex": "half",
     "isRequired": true,
     "values": [
       {
@@ -70,10 +63,17 @@
     ]
   },
   {
+    "type": "checkbox",
+    "label": "Check 2",
+    "name": "check2",
+    "flex": "half",
+    "isRequired": true
+  },
+  {
     "type": "button-toggle",
     "label": "Appearance",
     "name": "appearance",
-    "flex": "three-quarters",
+    "flex": "half",
     "isRequired": true,
     "values": [
       {

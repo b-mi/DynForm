@@ -106,5 +106,11 @@ export class FormSampleComponent implements OnInit {
     this.appearance = event.checked ? 'outline' : 'fill';
   }
 
+  clearData() {
+    this.fservice.setControlData(this.formGroup, null, this.ctlsShipping);
+    this.fservice.setControlData(this.formGroup, null, this.ctlsCarInf);
+
+    }
+    
 
 }
