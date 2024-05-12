@@ -62,7 +62,6 @@ export class FormFlowContentComponent implements OnInit {
   // actual control in edit mode
   editedControl: any = null;
 
-  appearance: MatFormFieldAppearance = 'fill'; // fill, outline
 
   // formGroup
   private _form!: FormGroup;
@@ -99,7 +98,6 @@ export class FormFlowContentComponent implements OnInit {
   }
 
 
-
   private _allowEditMode: boolean = false;
   @Input()
   public get allowEditMode(): boolean {
@@ -108,6 +106,18 @@ export class FormFlowContentComponent implements OnInit {
   public set allowEditMode(v: boolean) {
     this._allowEditMode = v;
   }
+
+
+private _appearance : MatFormFieldAppearance = 'fill'; // fill, outline;
+@Input()
+public get appearance() : MatFormFieldAppearance {
+  return this._appearance;
+}
+public set appearance(v : MatFormFieldAppearance) {
+  this._appearance = v;
+}
+
+
 
   chipSeparatorKeysCodes: number[] = [ENTER, COMMA];
 
@@ -251,9 +261,6 @@ export class FormFlowContentComponent implements OnInit {
     }
   }
 
-  changeAppearance() {
-    this.appearance = this.appearance === 'fill' ? 'outline' : 'fill';
-  }
 
   chipRemove(ctl: any, item: any) {
 

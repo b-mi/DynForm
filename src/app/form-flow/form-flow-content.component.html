@@ -8,7 +8,6 @@
     <mat-icon matTooltip="Add new control after selected" (click)="addNewCtl()">add</mat-icon>
     <mat-icon matTooltip="Remove selected control" (click)="removeSelectedCtl()">delete</mat-icon>
     }
-    <mat-slide-toggle (toggleChange)="changeAppearance()">{{appearance}}</mat-slide-toggle>
 
   </div>
   <mat-card-subtitle>
@@ -166,7 +165,7 @@
         <mat-icon>close</mat-icon>
       </button>
       }
-      <mat-icon>abc</mat-icon>
+      <mat-icon matSuffix>abc</mat-icon>
       <!-- <button mat-icon-button matSuffix (click)="openApiList(trigger, ctl.name); $event.stopPropagation()">
         <mat-icon>arrow_drop_down</mat-icon>
       </button> -->

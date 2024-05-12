@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormsModule, NgModel } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { FormFlowService } from '../form-flow/form-flow.service';
 import { JsonPipe } from '@angular/common';
@@ -7,11 +7,13 @@ import { FormFlowContentComponent } from '../form-flow/form-flow-content.compone
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatIconModule } from '@angular/material/icon';
+import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../config.service';
 import { lastValueFrom } from 'rxjs';
+import { MatFormFieldAppearance } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-form-sample',
@@ -27,8 +29,10 @@ import { lastValueFrom } from 'rxjs';
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
+    MatSlideToggleModule,
     MatDividerModule,
     MatCheckboxModule
+
   ]
 })
 export class FormSampleComponent implements OnInit {
@@ -40,7 +44,9 @@ export class FormSampleComponent implements OnInit {
 
   // if edit mode is allower. Need web api for writing form definitions to file system
   // acoording to config.json apiFullFormPath
-  allowEditMode = true;
+  allowEditMode = false;
+  useOutline = false;
+  appearance: MatFormFieldAppearance = 'fill';
 
   constructor() {
   }
@@ -92,9 +98,13 @@ export class FormSampleComponent implements OnInit {
     const data = await lastValueFrom(this.http.get(url));
     this.fservice.setControlData(this.formGroup, data, this.ctlsShipping);
     this.fservice.setControlData(this.formGroup, data, this.ctlsCarInf);
-    
+
   }
 
+
+  appearanceChanged(event: MatSlideToggleChange) {
+    this.appearance = event.checked ? 'outline' : 'fill';
+  }
 
 
 }

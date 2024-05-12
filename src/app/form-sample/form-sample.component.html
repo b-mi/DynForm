@@ -12,7 +12,7 @@
       </mat-card-header>
 
       <app-form-flow-content [formGroup]="formGroup" [formId]="formIdShipping" [controls]="ctlsShipping"
-        [allowEditMode]="allowEditMode" />
+        [allowEditMode]="allowEditMode" [appearance]="appearance" />
 
     </mat-card-content>
   </mat-card>
@@ -25,7 +25,7 @@
       </mat-card-header>
 
       <app-form-flow-content [formGroup]="formGroup" [formId]="formIdCarInfo" [controls]="ctlsCarInf"
-        [allowEditMode]="allowEditMode" />
+        [allowEditMode]="allowEditMode" [appearance]="appearance" />
 
     </mat-card-content>
   </mat-card>
@@ -34,6 +34,8 @@
     <button mat-flat-button (click)="enable(true)">Enable</button>
     <button mat-raised-button (click)="enable(false)">Disable</button>
     <button mat-raised-button (click)="loadData()">Load sample data</button>
+    <mat-slide-toggle [(ngModel)]="allowEditMode" [ngModelOptions]="{standalone: true}">Allow edit</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="useOutline" [ngModelOptions]="{standalone: true}" (change)="appearanceChanged($event)">Outline</mat-slide-toggle>
 
   </div>
 
