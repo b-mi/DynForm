@@ -66,7 +66,7 @@ export class FormFlowService {
 
   constructor() { }
 
-  setControlData(formGroup: FormGroup, data: any, ctls: any[]) {
+  setData(formGroup: FormGroup, data: any, ctls: any[]) {
     const noDataCtls = new Set(['space', 'divider']);
 
     ctls.forEach(ctl => {
