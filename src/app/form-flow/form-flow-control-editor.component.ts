@@ -71,7 +71,7 @@ export class FormFlowControlEditorComponent implements OnInit {
         { label: 'multi-select', key: 'multi-select' },
         { label: 'number', key: 'number' },
         { label: 'select', key: 'select' },
-        { label: 'slide', key: 'slide' },
+        { label: 'slide-toggle', key: 'slide-toggle' },
         { label: 'space', key: 'space' },
         { label: 'text', key: 'text' },
         { label: 'textarea', key: 'textarea' },

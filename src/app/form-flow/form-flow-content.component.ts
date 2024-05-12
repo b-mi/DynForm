@@ -19,6 +19,7 @@ import { MatAutocompleteModule, MatAutocompleteSelectedEvent, MatAutocompleteTri
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { MatSliderModule } from '@angular/material/slider';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormFlowControlEditorComponent } from './form-flow-control-editor.component';
 import { ConfigService } from '../config.service';
@@ -35,7 +36,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatCardModule, MatDatepickerModule, MatChipsModule, MatButtonToggleModule, AsyncPipe,
     MatTooltipModule, JsonPipe, MatSnackBarModule, MatRadioModule, MatAutocompleteModule,
     FormFlowControlEditorComponent, FormsModule, OverlayModule, MatDividerModule,
-    MatAutocompleteModule, AsyncPipe
+    MatAutocompleteModule, AsyncPipe, MatSliderModule
 
   ],
   templateUrl: './form-flow-content.component.html',
@@ -108,14 +109,14 @@ export class FormFlowContentComponent implements OnInit {
   }
 
 
-private _appearance : MatFormFieldAppearance = 'fill'; // fill, outline;
-@Input()
-public get appearance() : MatFormFieldAppearance {
-  return this._appearance;
-}
-public set appearance(v : MatFormFieldAppearance) {
-  this._appearance = v;
-}
+  private _appearance: MatFormFieldAppearance = 'fill'; // fill, outline;
+  @Input()
+  public get appearance(): MatFormFieldAppearance {
+    return this._appearance;
+  }
+  public set appearance(v: MatFormFieldAppearance) {
+    this._appearance = v;
+  }
 
 
 

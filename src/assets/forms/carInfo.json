@@ -1,6 +1,6 @@
 [
   {
-    "type": "slide",
+    "type": "slide-toggle",
     "label": "Slide toggle",
     "name": "check1",
     "flex": "quarter"
@@ -96,7 +96,8 @@
     "name": "",
     "flex": "half",
     "value": null,
-    "isRequired": false
+    "isRequired": false,
+    "isNonMatFormField": true
   },
   {
     "type": "chips",
@@ -158,5 +159,14 @@
     "isRequired": true,
     "api": "getcities",
     "hintStart": "http api values"
+  },
+  {
+    "type": "slider",
+    "label": "Slider",
+    "name": "slider",
+    "flex": "half",
+    "value": "37",
+    "slider_min": 20,
+    "slider_max": 80
   }
 ]

@@ -114,10 +114,27 @@
     </div>
     }
 
-    @case('slide') {
+    @case('slide-toggle') {
     <div class="ff-row">
       <input matInput readonly="true" [disabled]="formGroup.get(ctl.name)?.disabled">
       <mat-slide-toggle hideIcon="false" [formControlName]="ctl.name" [required]="ctl.isRequired"></mat-slide-toggle>
+    </div>
+    }
+
+    @case('slider') {
+    <div class="ff-row ff-space-between">
+      <div>
+        <input matInput class="width0" readonly="true">
+      </div>
+      <div style="width: 100%; margin: 0 20px;">
+
+        <mat-slider [min]="ctl.slider_min" [max]="ctl.slider_max" step="1" style="width: 100%;">
+          <input #slider matSliderThumb [formControlName]="ctl.name">
+        </mat-slider>
+      </div>
+      <div class="mat-h4">
+        {{slider.value}}
+      </div> 
     </div>
     }
 
