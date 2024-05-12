@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="mat-elevation-z6">
-  <span class="mat-mdc-card-title">title</span>
+  <span class="mat-mdc-card-title">Dynamic form example</span>
 </mat-toolbar>
 @if(formGroup){
 
@@ -7,9 +7,7 @@
 
   <mat-card class="main-card">
     <mat-card-content>
-      <mat-card-header>
-        <mat-card-subtitle>Shipping Information</mat-card-subtitle>
-      </mat-card-header>
+      <span class="mat-h3">Shipping Information</span>
 
       <app-form-flow-content [formGroup]="formGroup" [formId]="formIdShipping" [controls]="ctlsShipping"
         [allowEditMode]="allowEditMode" [appearance]="appearance" />
@@ -20,9 +18,7 @@
 
   <mat-card class="main-card">
     <mat-card-content>
-      <mat-card-header>
-        <mat-card-subtitle>Car info</mat-card-subtitle>
-      </mat-card-header>
+      <span class="mat-h3">Car info</span>
 
       <app-form-flow-content [formGroup]="formGroup" [formId]="formIdCarInfo" [controls]="ctlsCarInf"
         [allowEditMode]="allowEditMode" [appearance]="appearance" />
@@ -36,7 +32,8 @@
     <button mat-raised-button (click)="loadData()">Load sample data</button>
     <button mat-raised-button (click)="clearData()">Clear data</button>
     <mat-slide-toggle [(ngModel)]="allowEditMode" [ngModelOptions]="{standalone: true}">Allow edit</mat-slide-toggle>
-    <mat-slide-toggle [(ngModel)]="useOutline" [ngModelOptions]="{standalone: true}" (change)="appearanceChanged($event)">Outline</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="useOutline" [ngModelOptions]="{standalone: true}"
+      (change)="appearanceChanged($event)">Outline</mat-slide-toggle>
 
   </div>
 

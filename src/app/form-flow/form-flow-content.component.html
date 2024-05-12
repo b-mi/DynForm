@@ -158,22 +158,26 @@
 
     @case('autocomplete') {
     <div class="ff-row ff-space-between">
-      <input #acInput type="text" matInput [formControlName]="ctl.name" 
-      #trigger="matAutocompleteTrigger" [matAutocomplete]="auto" (blur)="acLostFocus(ctl, acInput)">
-      @if(formGroup.get(ctl.name)?.value){
-      <button mat-icon-button matSuffix (click)="$event.stopPropagation();acClearApiInput(ctl, acInput)">
-        <mat-icon>close</mat-icon>
-      </button>
-      }
-      <mat-icon matSuffix>abc</mat-icon>
+      <input #acInput type="text" matInput [formControlName]="ctl.name" #trigger="matAutocompleteTrigger"
+        [matAutocomplete]="auto" (blur)="acLostFocus(ctl, acInput)">
       <!-- <button mat-icon-button matSuffix (click)="openApiList(trigger, ctl.name); $event.stopPropagation()">
         <mat-icon>arrow_drop_down</mat-icon>
       </button> -->
+
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
         @for (option of filteredOptions[ctl.name] | async; track option) {
         <mat-option [value]="option">{{option.label}}</mat-option>
         }
       </mat-autocomplete>
+      <div class="ff-row">
+        @if(formGroup.get(ctl.name)?.value){
+        <button mat-icon-button matSuffix (click)="$event.stopPropagation();acClearApiInput(ctl, acInput)">
+          <mat-icon>close</mat-icon>
+        </button>
+        }
+        <mat-icon>abc</mat-icon>
+
+      </div>
     </div>
     }
 
@@ -191,8 +195,7 @@
     <div class="ff-row ff-space-between">
       <input #chipInput [formControlName]="ctl.name" #trigger="matAutocompleteTrigger" [matChipInputFor]="chipGrid"
         [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="chipSeparatorKeysCodes"
-        (matChipInputTokenEnd)="chipAdd($event, ctl)" (blur)="chipLostFocus(ctl, chipInput)" 
-        />
+        (matChipInputTokenEnd)="chipAdd($event, ctl)" (blur)="chipLostFocus(ctl, chipInput)" />
       <!-- @if(ctl.lastFilter !== '-'){
       <button mat-icon-button matSuffix (click)="chipClearApiInput(ctl, chipInput, trigger, chipGrid)">
         <mat-icon>close</mat-icon>
