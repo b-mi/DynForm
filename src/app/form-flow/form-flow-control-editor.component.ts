@@ -23,11 +23,11 @@ export class FormFlowControlEditorComponent implements OnInit {
   public get controlData(): any {
     return this._controlData;
   }
-  public set controlData(v: any) {
-    if (!this._controlData && v) {
+  public set controlData(data: any) {
+    if (!this._controlData && data) {
       this.formGroup = this.fservice.createFormGroup(this.edControls);
-      this._controlData = v;
-      this.fservice.setControlData(this.formGroup, this.edControls, v);
+      this._controlData = data;
+      this.fservice.setControlData(this.formGroup, data, this.edControls);
 
     }
   }

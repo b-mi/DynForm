@@ -21,7 +21,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormFlowControlEditorComponent } from './form-flow-control-editor.component';
-import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../config.service';
 import { Observable, count, debounceTime, distinctUntilChanged, filter, lastValueFrom, map, of, startWith, switchMap, tap } from 'rxjs';
 import { FormFlowService } from './form-flow.service';
@@ -215,6 +214,7 @@ export class FormFlowContentComponent implements OnInit {
 
   async saveToFile() {
     await this.fservice.saveToFile(this.formId, this.controls);
+    location.reload();
   }
 
 

@@ -3,9 +3,7 @@
     "type": "slide",
     "label": "Slide toggle",
     "name": "check1",
-    "flex": "quarter",
-    "isRequired": true,
-    "value": true
+    "flex": "quarter"
   },
   {
     "type": "text",
@@ -52,8 +50,7 @@
     "label": "Check 2",
     "name": "check2",
     "flex": "quarter",
-    "isRequired": true,
-    "value": null
+    "isRequired": true
   },
   {
     "type": "radio",
@@ -70,8 +67,7 @@
         "label": "Woman",
         "key": "W"
       }
-    ],
-    "value": "W"
+    ]
   },
   {
     "type": "button-toggle",
@@ -92,8 +88,7 @@
         "label": "Underline",
         "key": "U"
       }
-    ],
-    "value": "I"
+    ]
   },
   {
     "type": "chips",
@@ -144,11 +139,6 @@
         "label": "Magenta",
         "key": "M"
       }
-    ],
-    "value": [
-      "BL",
-      "O",
-      "M"
     ]
   },
   {

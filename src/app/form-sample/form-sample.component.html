@@ -11,8 +11,8 @@
         <mat-card-subtitle>Shipping Information</mat-card-subtitle>
       </mat-card-header>
 
-      <app-form-flow-content [formGroup]="formGroup" [formId]="formIdShipping" 
-      [controls]="ctlsShipping" [allowEditMode]="allowEditMode" />
+      <app-form-flow-content [formGroup]="formGroup" [formId]="formIdShipping" [controls]="ctlsShipping"
+        [allowEditMode]="allowEditMode" />
 
     </mat-card-content>
   </mat-card>
@@ -24,8 +24,8 @@
         <mat-card-subtitle>Car info</mat-card-subtitle>
       </mat-card-header>
 
-      <app-form-flow-content [formGroup]="formGroup" [formId]="formIdCarInfo" 
-      [controls]="ctlsCarInf" [allowEditMode]="allowEditMode" />
+      <app-form-flow-content [formGroup]="formGroup" [formId]="formIdCarInfo" [controls]="ctlsCarInf"
+        [allowEditMode]="allowEditMode" />
 
     </mat-card-content>
   </mat-card>
@@ -33,6 +33,8 @@
   <div class="ff-row ff-space-around">
     <button mat-flat-button (click)="enable(true)">Enable</button>
     <button mat-raised-button (click)="enable(false)">Disable</button>
+    <button mat-raised-button (click)="loadData()">Load sample data</button>
+
   </div>
 
 </form>

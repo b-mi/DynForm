@@ -10,6 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HttpClient } from '@angular/common/http';
+import { ConfigService } from '../config.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-form-sample',
@@ -31,6 +33,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FormSampleComponent implements OnInit {
 
+  private config = inject(ConfigService);
   private http = inject(HttpClient);
   private fservice = inject(FormFlowService);
   formGroup!: FormGroup;
@@ -55,7 +58,7 @@ export class FormSampleComponent implements OnInit {
 
     // create empty fromGroup
     const fg = new FormGroup({});
-    
+
     // fill formGroup
     this.fservice.appendToFormGroup(fg, this.ctlsShipping);
     this.fservice.appendToFormGroup(fg, this.ctlsCarInf);
@@ -83,6 +86,14 @@ export class FormSampleComponent implements OnInit {
     });
   }
 
+  async loadData() {
+    const endpoint = this.config.formWriteServiceEndpoint;
+    const url = `${endpoint}/get-sample-data`;
+    const data = await lastValueFrom(this.http.get(url));
+    this.fservice.setControlData(this.formGroup, data, this.ctlsShipping);
+    this.fservice.setControlData(this.formGroup, data, this.ctlsCarInf);
+    
+  }
 
 
 

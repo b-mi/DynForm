@@ -66,15 +66,20 @@ export class FormFlowService {
 
   constructor() { }
 
-  setControlData(formGroup: FormGroup, ctls: any[], data: any) {
+  setControlData(formGroup: FormGroup, data: any, ctls: any[]) {
+    const noDataCtls = new Set(['space', 'divider']);
 
     ctls.forEach(ctl => {
-      if (ctl.type !== 'space') {
-        let cval = ctl.value;
+      if (!noDataCtls.has(ctl.type)) {
+
+        let ctlValue = ctl.value; 
         if (data && data[ctl.name]) {
-          cval = data[ctl.name];
+          ctlValue = data[ctl.name];
         }
-        formGroup.controls[ctl.name].setValue(cval);
+        if( ctl.type === 'chips' ){
+          ctl.values = ctlValue;
+        }
+        formGroup.controls[ctl.name].setValue(ctlValue);
       }
     });
   }

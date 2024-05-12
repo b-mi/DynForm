@@ -166,6 +166,7 @@
         <mat-icon>close</mat-icon>
       </button>
       }
+      <mat-icon>abc</mat-icon>
       <!-- <button mat-icon-button matSuffix (click)="openApiList(trigger, ctl.name); $event.stopPropagation()">
         <mat-icon>arrow_drop_down</mat-icon>
       </button> -->
@@ -202,6 +203,8 @@
       <!-- <button mat-icon-button matSuffix (click)="openApiList(trigger, ctl.name); $event.stopPropagation()">
         <mat-icon>arrow_drop_down</mat-icon>
       </button> -->
+      <mat-icon>abc</mat-icon>
+
     </div>
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="chipSelected($event, ctl, chipInput);">
       @for (option of filteredOptions[ctl.name] | async; track option) {
