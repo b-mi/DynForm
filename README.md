@@ -26,7 +26,7 @@ Testing angular material dynamic forms, angular 17
 
 ## FormGroup result
 
-`
+```
 {
   "company": "",
   "firstName": "",
@@ -77,6 +77,6 @@ Testing angular material dynamic forms, angular 17
   },
   "slider": 40
 }
-`
+```
 
 Related with [ng-dyn-form-server](https://github.com/b-mi/ng-dyn-form-server)
