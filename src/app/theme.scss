@@ -6,15 +6,19 @@ $my-typography: mat.define-typography-config();
 @include mat.typography-hierarchy($my-typography);
 
 $light-theme: matx.define-theme((color: (theme-type: light,
-        primary: matx.$m3-azure-palette,
-        tertiary: matx.$m3-blue-palette ),
-      density: (scale: -1)));
+primary: matx.$m3-chartreuse-palette)));
+$dark-theme: matx.define-theme((color: (theme-type: dark,
+        primary: matx.$m3-chartreuse-palette)));
 
-@include mat.core();
-@include matx.color-variants-back-compat($light-theme);
 
-:root {
-  @include mat.all-component-themes($light-theme);
+// $light-theme: matx.define-theme((color: (theme-type: dark,
+//         primary: matx.$m3-azure-palette,
+//         tertiary: matx.$m3-blue-palette ),
+//       density: (scale: -1)));
+
+html {
+  // Apply the base theme at the root, so it will be inherited by the whole app.
+  @include mat.all-component-themes($dark-theme);
 }
 
 // $m3-red-palette
