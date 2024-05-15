@@ -7,7 +7,7 @@
 
   <mat-card class="main-card">
     <mat-card-content>
-      <span class="mat-h3">Shipping Information</span>
+      <span class="mat-h3 mat-text-color">Shipping Information</span>
 
       <app-form-flow-content [formGroup]="formGroup" [formId]="formIdShipping" [controls]="ctlsShipping"
         [allowEditMode]="allowEditMode" [appearance]="appearance" />
@@ -18,7 +18,7 @@
 
   <mat-card class="main-card">
     <mat-card-content>
-      <span class="mat-h3">Car info</span>
+      <span class="mat-h3 mat-text-color">Car info</span>
 
       <app-form-flow-content [formGroup]="formGroup" [formId]="formIdCarInfo" [controls]="ctlsCarInf"
         [allowEditMode]="allowEditMode" [appearance]="appearance" />
@@ -40,7 +40,7 @@
 </form>
 
 
-<pre>
+<pre class="mat-text-color">
   {{formGroup.value | json}}
 </pre>
 
