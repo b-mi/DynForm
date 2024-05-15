@@ -29,6 +29,10 @@ $theme: matx.define-theme(
   color: var(--mat-app-text-color);
 }
 
+body {
+  margin: 0;
+}
+
 // $m3-red-palette
 // $m3-green-palette
 // $m3-blue-palette
