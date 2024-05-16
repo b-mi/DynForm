@@ -6,6 +6,7 @@ $my-typography: mat.define-typography-config();
 @include mat.typography-hierarchy($my-typography);
 
 $theme-type: light;
+$scale: -1; // 0 .. -5
 
 $theme: matx.define-theme(
   (
@@ -16,7 +17,7 @@ $theme: matx.define-theme(
       tertiary: matx.$m3-yellow-palette
     ),
     density: (
-      scale: -1
+      scale: $scale
     )
   )
 );
@@ -30,6 +31,19 @@ $theme: matx.define-theme(
 
 .mat-text-color {
   color: var(--mat-app-text-color);
+}
+
+.mat-primary-background {
+  background-color: var(--mdc-filled-button-container-color) !important;
+}
+
+.mat-primary-color {
+  color: var(--mdc-filled-button-label-text-color);
+}
+
+.mat-primary-colors {
+  background-color: var(--mdc-filled-button-container-color) !important;
+  color: var(--mdc-filled-button-label-text-color);
 }
 
 body {
