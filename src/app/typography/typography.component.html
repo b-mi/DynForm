@@ -1,14 +1,18 @@
-@for (item of list; track $index) {
+<mat-card>
+    <mat-card-content>
+        @for (item of list; track $index) {
 
-<div [ngClass]="item" class="mat-text-color">{{item}}</div>
+        <div [ngClass]="item" class="mat-text-color">{{item}}</div>
 
-}
+        }
 
-<p></p>
+        <p></p>
 
-<div class="line-container">
-    <div class="line-text"> Customer </div>
-</div>
-<p>
+        <div class="line-container">
+            <div class="line-text"> Customer </div>
+        </div>
+        <p>
 
-</p>
+        </p>
+    </mat-card-content>
+</mat-card>

@@ -1,10 +1,12 @@
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+
 
 @Component({
   selector: 'app-typography',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, MatCardModule],
   templateUrl: './typography.component.html',
   styleUrl: './typography.component.css'
 })
