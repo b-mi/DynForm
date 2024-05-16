@@ -8,8 +8,8 @@ Testing angular material dynamic forms, angular 17
 * Responsive
 * Support form validators and hints
 * Support for 
-        - autocomplete (api filtered data source)
-        - button-toggle
+- autocomplete (api filtered data source)
+- button-toggle
         - button-toggle-multiple
         - chips (api filtered data source)
         - checkbox
