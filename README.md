@@ -3,11 +3,12 @@ Testing angular material dynamic forms, angular 17
 
 
 ## Form generator
+- Angular dynamic forms
 - Json file definition
 - Editing mode - node.js service (ng-dyn-form-server) for storing json file into file system
 - Responsive
-- Support form validators and hints
-- Support for 
+- Validators and hints
+- Angular material editors:
   - autocomplete (api filtered data source)
   - button-toggle
   - button-toggle-multiple
@@ -24,8 +25,12 @@ Testing angular material dynamic forms, angular 17
   - textarea
   - slider
 
-* Support for autocomplete and chips with autocomplete with http get api source
-* Support for widths full, half, thirds, quarters, max 1 up to 4 columns with automatic wrap
+- Widths:
+  - full
+  - half
+  - thirds
+  - quarters
+  - 1 up to 4 columns with automatic wrap
 
 
 ## Presentation mode
