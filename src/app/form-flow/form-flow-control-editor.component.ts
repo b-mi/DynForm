@@ -75,6 +75,8 @@ export class FormFlowControlEditorComponent implements OnInit {
         { label: 'space', key: 'space' },
         { label: 'text', key: 'text' },
         { label: 'textarea', key: 'textarea' },
+        { label: 'slider', key: 'slider' },
+
 
       ],
     },
