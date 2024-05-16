@@ -5,12 +5,15 @@
 $my-typography: mat.define-typography-config();
 @include mat.typography-hierarchy($my-typography);
 
+$theme-type: light;
+
 $theme: matx.define-theme(
   (
     color: (
-      theme-type: dark,
-      primary: matx.$m3-azure-palette,
-      tertiary: matx.$m3-blue-palette
+      theme-type: $theme-type,
+      primary: matx.$m3-cyan-palette,
+      // secondary: matx.$m3-orange-palette,
+      tertiary: matx.$m3-magenta-palette
     ),
     density: (
       scale: -1
