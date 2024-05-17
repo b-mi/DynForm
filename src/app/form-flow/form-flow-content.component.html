@@ -124,12 +124,12 @@
     @case('slider') {
     <div class="ff-row ff-space-between">
       <div>
-        <input matInput class="width0" readonly="true">
+        <input matInput class="width0" readonly="true" [disabled]="formGroup.get(ctl.name)!.disabled">
       </div>
       <div style="width: 100%; margin: 0 20px;">
 
-        <mat-slider [min]="ctl.slider_min" [max]="ctl.slider_max" step="1" style="width: 100%;">
-          <input #slider matSliderThumb [formControlName]="ctl.name">
+        <mat-slider [min]="ctl.slider_min" [max]="ctl.slider_max" step="1" style="width: 100%;" >
+          <input #slider matSliderThumb [formControlName]="ctl.name" >
         </mat-slider>
       </div>
       <div class="mat-h4 mat-text-color">
