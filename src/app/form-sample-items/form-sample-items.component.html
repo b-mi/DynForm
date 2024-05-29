@@ -1,0 +1,22 @@
+<mat-toolbar class="mat-primary-background mat-elevation-z6">
+    <span class="mat-primary-color">Dynamic form with items example</span>
+</mat-toolbar>
+
+<div>
+    <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+        <ng-container *cdkVirtualFor="let item of items">
+
+            @if(item.id === editId){
+            }
+            @else {
+            <div [ngClass]="{'item-selected': item.id === selectedId}" class="example-item ff-row ff-space-between"
+                (click)="setSelected(item.id)">
+                <div>{{item.id}}</div>
+                <div>{{item.name}}</div>
+                <div>{{item.age}}</div>
+                <div>{{item.date}}</div>
+            </div>
+            }
+        </ng-container>
+    </cdk-virtual-scroll-viewport>
+</div>

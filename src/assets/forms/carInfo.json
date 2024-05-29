@@ -107,13 +107,27 @@
     "value": "",
     "isRequired": true,
     "api": "getcolors",
-    "hintStart": "http api values"
+    "hintStart": "http api values",
+    "values": [
+      {
+        "key": 5,
+        "label": "Azure"
+      },
+      {
+        "key": 32,
+        "label": "DarkRed"
+      },
+      {
+        "key": 18,
+        "label": "CornflowerBlue"
+      }
+    ]
   },
   {
     "type": "button-toggle-multiple",
     "label": "Possible colors",
     "name": "pcolor",
-    "flex": "three-quarters",
+    "flex": "full",
     "isRequired": true,
     "values": [
       {
@@ -159,6 +173,14 @@
     "isRequired": true,
     "api": "getcities",
     "hintStart": "http api values"
+  },
+  {
+    "type": "space",
+    "label": "New Control",
+    "name": "new_control",
+    "flex": "quarter",
+    "value": null,
+    "isRequired": false
   },
   {
     "type": "slider",

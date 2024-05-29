@@ -1,0 +1,23 @@
+.items-container {
+  overflow-y: hidden;
+  height: 800px;
+  width: 1600px;
+}
+
+.example-viewport {
+  height: 500px;
+  width: 800px;
+  padding: 10px;
+  background-color: white;
+}
+
+.example-item {
+  margin: 2px 10px;
+  height: 50px;
+  border-bottom: 1px lightgray solid;
+  /* background-color: gainsboro; */
+}
+
+.item-selected {
+  background-color: gainsboro;
+}
