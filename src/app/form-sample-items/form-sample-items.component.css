@@ -11,7 +11,7 @@
   background-color: white;
 }
 
-.ff-item {
+.ff-item-container {
   padding: 5px 10px;
   border-bottom: 1px lightgray solid;
   align-items: center;
@@ -27,7 +27,7 @@
 }
 
 .item-buttons {
-  flex: 0 0 50px;
+  flex: 0 0 38px;
   /* Fixná šírka 50px */
   padding: 0 10px;
   /* Priestor okolo ikon */
@@ -39,3 +39,4 @@
   flex: 1;
   /* Automaticky natiahne zvyšný priestor */
 }
+

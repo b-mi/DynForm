@@ -6,7 +6,7 @@
     <cdk-virtual-scroll-viewport itemSize="50" class="virtual-viewport">
         <ng-container *cdkVirtualFor="let item of items">
 
-            <div class="ff-row ff-item">
+            <div class="ff-row ff-item-container" [ngClass]="{'item-selected': item.id === selectedId, 'item-gray': editId}">
 
                 <div class="item-content">
                     @if(item.id === editId){
@@ -20,7 +20,7 @@
 
                     }
                     @else {
-                    <div [ngClass]="{'item-selected': item.id === selectedId, 'item-gray': editId > 0}" class="ff-col" 
+                    <div class="ff-col"
                         (click)="setSelected(item.id)">
                         <div class="ff-row ff-space-between">
                             <div>{{item.id}}</div>
@@ -41,10 +41,15 @@
                     <button mat-icon-button (click)="cancelEdit(item.id, item)">
                         <mat-icon>close</mat-icon>
                     </button>
+                    <button mat-icon-button (click)="deleteItem(item.id, item)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
                     } @else {
+                    @if( !editId ){
                     <button mat-icon-button (click)="startEdit(item.id, item)">
                         <mat-icon>edit</mat-icon>
                     </button>
+                    }
                     }
 
                 </div>

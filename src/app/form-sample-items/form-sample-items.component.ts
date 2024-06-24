@@ -10,6 +10,9 @@ import { FormGroup } from '@angular/forms';
 import { FormFlowService } from '../form-flow/form-flow.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { AUTO_STYLE, animate, state, style, transition, trigger } from '@angular/animations';
+
+const DEFAULT_DURATION = 300;
 
 @Component({
   selector: 'app-form-sample-items',
@@ -24,13 +27,13 @@ export class FormSampleItemsComponent implements OnInit {
 
   private fservice = inject(FormFlowService);
 
-  selectedId!: number;
-  editId!: number;
+  selectedId?: number;
+  editId?: number;
   formGroup!: FormGroup;
 
   allowEditMode = false;
   useOutline = false;
-  appearance: MatFormFieldAppearance = 'fill';
+  appearance: MatFormFieldAppearance = 'fill'; // fill / outline
   formIdItemsSample: string = 'itemsSample';
   ctlsItemsSample: any[] = [];
 
@@ -76,19 +79,26 @@ export class FormSampleItemsComponent implements OnInit {
   }
 
   startEdit(id: number, data: any) {
+    
     this.fservice.setFormData(this.formGroup, data, this.ctlsItemsSample);
     this.editId = id;
     this.selectedId = id;
   }
 
   cancelEdit(id: number, data: any) {
-    this.editId = -1;
+    this.editId = undefined;
   }
   saveEdit(id: number, data: any) {
     this.fservice.setDataFromForm(this.formGroup, data, this.ctlsItemsSample);
-    this.editId = -1;
+    this.editId = undefined;
   }
 
+  deleteItem(id: number, data: any) {
+    this.items = this.items.filter(itm => itm.id !== id);
+    this.editId = undefined;
+    this.selectedId = undefined;
+
+  }
 
 
 }
