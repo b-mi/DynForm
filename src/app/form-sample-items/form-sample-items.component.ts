@@ -10,17 +10,16 @@ import { FormGroup } from '@angular/forms';
 import { FormFlowService } from '../form-flow/form-flow.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { AUTO_STYLE, animate, state, style, transition, trigger } from '@angular/animations';
-
-const DEFAULT_DURATION = 300;
+import { SmoothHeightDirective, smoothHeight } from '../smooth-height.directive';
 
 @Component({
   selector: 'app-form-sample-items',
   standalone: true,
   imports: [MatCardModule, MatToolbarModule, MatListModule, ScrollingModule, NgClass,
-    FormFlowContentComponent, MatIconModule, MatButtonModule],
+    FormFlowContentComponent, MatIconModule, MatButtonModule, SmoothHeightDirective],
   templateUrl: './form-sample-items.component.html',
-  styleUrls: ['./form-sample-items.component.css']
+  styleUrls: ['./form-sample-items.component.css'],
+  animations: [smoothHeight]
 })
 export class FormSampleItemsComponent implements OnInit {
 
@@ -52,7 +51,7 @@ export class FormSampleItemsComponent implements OnInit {
    *
    */
   constructor() {
-    // 100000
+    100000
     for (let index = 2; index < 100000; index++) {
       this.items.push({ id: index, name: 'name' + index.toString(), age: index % 77, date: '2024-12-24' });
     }

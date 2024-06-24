@@ -8,7 +8,7 @@
 
             <div class="ff-row ff-item-container" [ngClass]="{'item-selected': item.id === selectedId, 'item-gray': editId}">
 
-                <div class="item-content">
+                <div class="item-content" [appSmoothHeight]="item.id === editId">
                     @if(item.id === editId){
                     <div>
 
