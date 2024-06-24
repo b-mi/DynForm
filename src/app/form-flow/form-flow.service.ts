@@ -14,6 +14,9 @@ export class FormFlowService {
   private config = inject(ConfigService);
   private http = inject(HttpClient);
 
+  readonly noDataCtls = new Set(['space', 'divider']);
+
+
   createFormGroup(controls: any[]): FormGroup {
     const fgrp = this.fb.group({});
     this.appendToFormGroup(fgrp, controls);
@@ -43,7 +46,9 @@ export class FormFlowService {
         if (ctl.max) {
           fc.addValidators(Validators.max(ctl.max));
         }
-
+        if (ctl.disabled) {
+          fc.disable({ onlySelf: true, emitEvent: false });
+        }
 
         fgrp.addControl(ctl.name, fc);
       }
@@ -66,23 +71,32 @@ export class FormFlowService {
 
   constructor() { }
 
-  setData(formGroup: FormGroup, data: any, ctls: any[]) {
-    const noDataCtls = new Set(['space', 'divider']);
+  setFormData(formGroup: FormGroup, data: any, ctls: any[]) {
 
     ctls.forEach(ctl => {
-      if (!noDataCtls.has(ctl.type)) {
+      if (!this.noDataCtls.has(ctl.type)) {
 
-        let ctlValue = ctl.value; 
+        let ctlValue = ctl.value;
         if (data && data[ctl.name]) {
           ctlValue = data[ctl.name];
         }
-        if( ctl.type === 'chips' ){
+        if (ctl.type === 'chips') {
           ctl.values = ctlValue;
         }
         formGroup.controls[ctl.name].setValue(ctlValue);
       }
     });
   }
+
+  setDataFromForm(formGroup: FormGroup, data: any, ctls: any[]) {
+
+    ctls.forEach(ctl => {
+      if (!this.noDataCtls.has(ctl.type)) {
+        data[ctl.name] = formGroup.get(ctl.name)?.value;
+      }
+    });
+  }
+
 
   async loadFormDef(formId: string) {
 

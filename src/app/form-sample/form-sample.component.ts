@@ -96,8 +96,8 @@ export class FormSampleComponent implements OnInit {
     const endpoint = this.config.formWriteServiceEndpoint;
     const url = `${endpoint}/get-sample-data`;
     const data = await lastValueFrom(this.http.get(url));
-    this.fservice.setData(this.formGroup, data, this.ctlsShipping);
-    this.fservice.setData(this.formGroup, data, this.ctlsCarInf);
+    this.fservice.setFormData(this.formGroup, data, this.ctlsShipping);
+    this.fservice.setFormData(this.formGroup, data, this.ctlsCarInf);
 
   }
 
@@ -107,8 +107,8 @@ export class FormSampleComponent implements OnInit {
   }
 
   clearData() {
-    this.fservice.setData(this.formGroup, null, this.ctlsShipping);
-    this.fservice.setData(this.formGroup, null, this.ctlsCarInf);
+    this.fservice.setFormData(this.formGroup, null, this.ctlsShipping);
+    this.fservice.setFormData(this.formGroup, null, this.ctlsCarInf);
 
     }
     

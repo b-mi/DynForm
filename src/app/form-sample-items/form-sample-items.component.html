@@ -3,20 +3,52 @@
 </mat-toolbar>
 
 <div>
-    <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+    <cdk-virtual-scroll-viewport itemSize="50" class="virtual-viewport">
         <ng-container *cdkVirtualFor="let item of items">
 
-            @if(item.id === editId){
-            }
-            @else {
-            <div [ngClass]="{'item-selected': item.id === selectedId}" class="example-item ff-row ff-space-between"
-                (click)="setSelected(item.id)">
-                <div>{{item.id}}</div>
-                <div>{{item.name}}</div>
-                <div>{{item.age}}</div>
-                <div>{{item.date}}</div>
+            <div class="ff-row ff-item">
+
+                <div class="item-content">
+                    @if(item.id === editId){
+                    <div>
+
+                        <app-form-flow-content [formGroup]="formGroup" [formId]="formIdItemsSample"
+                            [controls]="ctlsItemsSample" [allowEditMode]="allowEditMode" [appearance]="appearance" />
+                    </div>
+
+
+
+                    }
+                    @else {
+                    <div [ngClass]="{'item-selected': item.id === selectedId, 'item-gray': editId > 0}" class="ff-col" 
+                        (click)="setSelected(item.id)">
+                        <div class="ff-row ff-space-between">
+                            <div>{{item.id}}</div>
+                            <div>{{item.name}}</div>
+                        </div>
+                        <div class="example-item ff-row ff-space-between">
+                            <div>{{item.age}}</div>
+                            <div>{{item.date}}</div>
+                        </div>
+                    </div>
+                    }
+                </div>
+                <div class="item-buttons">
+                    @if(item.id === editId){
+                    <button mat-icon-button (click)="saveEdit(item.id, item)">
+                        <mat-icon>save</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="cancelEdit(item.id, item)">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    } @else {
+                    <button mat-icon-button (click)="startEdit(item.id, item)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    }
+
+                </div>
             </div>
-            }
         </ng-container>
     </cdk-virtual-scroll-viewport>
 </div>

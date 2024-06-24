@@ -17,7 +17,8 @@
     "label": "Date 1",
     "name": "car_date1",
     "flex": "quarter",
-    "value": null
+    "value": null,
+    "disabled": true
   },
   {
     "type": "date",
@@ -180,7 +181,8 @@
     "name": "new_control",
     "flex": "quarter",
     "value": null,
-    "isRequired": false
+    "isRequired": false,
+    "isNonMatFormField": true
   },
   {
     "type": "slider",

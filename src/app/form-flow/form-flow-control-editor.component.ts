@@ -27,7 +27,7 @@ export class FormFlowControlEditorComponent implements OnInit {
     if (!this._controlData && data) {
       this.formGroup = this.fservice.createFormGroup(this.edControls);
       this._controlData = data;
-      this.fservice.setData(this.formGroup, data, this.edControls);
+      this.fservice.setFormData(this.formGroup, data, this.edControls);
 
     }
   }
@@ -98,6 +98,13 @@ export class FormFlowControlEditorComponent implements OnInit {
       "type": "checkbox",
       "label": "isRequired",
       "name": "isRequired",
+      "flex": 'third',
+      "value": null,
+    },
+    {
+      "type": "checkbox",
+      "label": "disabled",
+      "name": "disabled",
       "flex": 'third',
       "value": null,
     },

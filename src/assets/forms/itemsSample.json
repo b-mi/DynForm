@@ -1,0 +1,41 @@
+[
+  {
+    "type": "number",
+    "label": "Id",
+    "name": "id",
+    "flex": "half",
+    "value": "",
+    "isRequired": true,
+    "hintStart": "Description at start",
+    "hintEnd": "Description at end",
+    "disabled": true
+  },
+  {
+    "type": "text",
+    "label": "Nazov",
+    "name": "name",
+    "flex": "half",
+    "value": "",
+    "isRequired": true,
+    "hintEnd": "Description at enddd"
+  },
+  {
+    "type": "number",
+    "label": "Vek",
+    "name": "age",
+    "flex": "half",
+    "value": "",
+    "isRequired": true,
+    "hintStart": "Description at start",
+    "hintEnd": "Description at end"
+  },
+
+  {
+    "type": "date",
+    "label": "Dátum",
+    "name": "date",
+    "flex": "half",
+    "isRequired": true
+  }
+
+]
